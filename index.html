@@ -7,6 +7,8 @@
   <!-- Google Font -->
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <!-- Tailwind CSS -->
+  <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
   <!-- Main stylesheet for project -->
   <link rel="stylesheet" href="./assets/styles/main.css">
 </head>
@@ -19,8 +21,14 @@
   <div id="main">
     <div class="container">
       <div class="left-panel">
-        <div class="nav-top">Icons...</div>
-        <div class="page-title">
+        <div class="nav-top mb-7">
+          <div class="nav-btn active" id="btn-intro"></div>
+          <div class="nav-btn inactive" id="btn-translate"></div>
+          <div class="nav-btn inactive" id="btn-scale"></div>
+          <div class="nav-btn inactive" id="btn-shear"></div>
+          <div class="nav-btn inactive" id="btn-rotate"></div>
+        </div>
+        <div class="page-title mb-2">
           <h2>Introduction</h2>
         </div>
         <div class="page-content">

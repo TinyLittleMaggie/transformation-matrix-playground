@@ -26,6 +26,7 @@ h1 {
 h2 {
   font-size: 28px;
   color: #F65485;
+  font-weight: bold;
 }
 
 /* ---------------------- */
@@ -65,13 +66,88 @@ h2 {
 }
 
 .left-panel {
-  padding-right: 15px;
+  padding-right: 20px;
 }
 
 .right-panel {
   background-color: #f5f5f5;
-  height: 50vh;
-  padding-left: 15px;
+  height: 485px;
+  padding-left: 20px;
 }
 
+/* ---------------------- */
+
+.nav-btn {
+  width: 40px;
+  height: 40px;
+  display: inline-block;
+  margin-right: 25px;
+  cursor: pointer;
+}
+
+/* inactive */
+
+#btn-intro.inactive {
+  background: url(../icons/intro/inactive.svg);
+}
+
+#btn-translate.inactive {
+  background: url(../icons/translate/inactive.svg);
+}
+
+#btn-scale.inactive {
+  background: url(../icons/scale/inactive.svg);
+}
+
+#btn-shear.inactive {
+  background: url(../icons/shear/inactive.svg);
+}
+
+#btn-rotate.inactive {
+  background: url(../icons/rotate/inactive.svg);
+}
+
+/* hover */
+
+#btn-intro:hover {
+  background: url(../icons/intro/hover.svg);
+}
+
+#btn-translate:hover {
+  background: url(../icons/translate/hover.svg);
+}
+
+#btn-scale:hover {
+  background: url(../icons/scale/hover.svg);
+}
+
+#btn-shear:hover {
+  background: url(../icons/shear/hover.svg);
+}
+
+#btn-rotate:hover {
+  background: url(../icons/rotate/hover.svg);
+}
+
+/* active */
+
+#btn-intro.active {
+  background: url(../icons/intro/active.svg);
+}
+
+#btn-translate.active {
+  background: url(../icons/translate/active.svg);
+}
+
+#btn-scale.active {
+  background: url(../icons/scale/active.svg);
+}
+
+#btn-shear.active {
+  background: url(../icons/shear/active.svg);
+}
+
+#btn-rotate.active {
+  background: url(../icons/rotate/active.svg);
+}
 
