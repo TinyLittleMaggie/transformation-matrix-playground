@@ -151,3 +151,41 @@ h2 {
   background: url(../icons/rotate/active.svg);
 }
 
+/* ---------------------- */
+
+.nav-bottom {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.nav-bottom .previous,
+.nav-bottom .next {
+  font-weight: bold;
+  color: #F65485;
+  cursor: pointer;
+  position: absolute;
+}
+
+.nav-bottom .previous {
+  left: 0;
+  top: 0;
+}
+
+.nav-bottom .next {
+  right: 0;
+  top: 0;
+}
+
+.nav-bottom .dots .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 3px;
+  background-color: rgba(246, 84, 133, 0.2);
+  display: inline-block;
+  margin-right: 8px;
+}
+
+.nav-bottom .dots .dot.active {
+  background-color: rgba(246, 84, 133);
+}
