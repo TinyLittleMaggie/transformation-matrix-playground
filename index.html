@@ -11,40 +11,29 @@
   <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
   <!-- Main stylesheet for project -->
   <link rel="stylesheet" href="./assets/styles/main.css">
+  <!-- Script for displaying content on the left -->
+  <script src="./assets/js/levels.js" defer></script>
   <!-- Script for drawing on the canvas -->
   <script src="./assets/js/canvas.js" defer></script>
 </head>
 <body>
   <div id="header">
     <div class="container">
-      <h1>A Transformation Matrix Playground</h1>
+      <h1 id="site-title">A Transformation Matrix Playground</h1>
     </div>
   </div>
   <div id="main">
     <div class="container">
       <div class="left-panel">
-        <div class="nav-top mb-4">
-          <div class="nav-btn active" id="btn-intro"></div>
-          <div class="nav-btn inactive" id="btn-translate"></div>
-          <div class="nav-btn inactive" id="btn-scale"></div>
-          <div class="nav-btn inactive" id="btn-shear"></div>
-          <div class="nav-btn inactive" id="btn-rotate"></div>
+        <div id="nav-top" class="mb-4">
+          <div class="nav-btn active" id="btn-intro" data-level="0"></div>
+          <div class="nav-btn inactive" id="btn-translate" data-level="2"></div>
+          <div class="nav-btn inactive" id="btn-scale" data-level="3"></div>
+          <div class="nav-btn inactive" id="btn-shear" data-level="4"></div>
+          <div class="nav-btn inactive" id="btn-rotate" data-level="5"></div>
         </div>
-        <div class="page-title mb-2">
-          <h2>Introduction</h2>
-        </div>
-        <div class="page-content">
-          <p>If you move a point <i>(x, y)</i> to a new position <i>(x’, y’)</i> using the following rules:</p>
-          <div class="formula">
-            <p class="text-center"><i>x’  =  ax  +  cy  +  e</i></p>
-            <p class="text-center"><i>y’  =  bx  +  dy  +  f</i></p>
-          </div>
-          <p>where <i>a, b, c, d, e, f</i> are values that you choose, we say that you are applying a <i>transformation</i> to point <i>(x, y)</i>:</p>
-          <div class="formula">
-            <img src="./assets/images/formula-1.1.png" alt="transform point (x, y) to (x', y')" class="w-64">
-          </div>
-          <p>Now if you move <b>every point</b> on a shape to a new position using the same rules and the same set of <i>a, b, c, d, e, f</i> values, we say that you are applying a transformation <b>to the shape</b>.</p>
-        </div>
+        <div id="page-title" class="mb-2"></div>
+        <div id="page-content"></div>
         <div class="nav-bottom mt-4">
           <div class="previous">← Previous</div>
           <ul class="dots">

@@ -162,6 +162,13 @@ h2 {
 
 /* ---------------------- */
 
+#page-content {
+  height: 315px;
+  overflow: scroll;
+}
+
+/* ---------------------- */
+
 .nav-bottom {
   position: relative;
   display: flex;
