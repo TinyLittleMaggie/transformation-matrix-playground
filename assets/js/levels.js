@@ -1,4 +1,4 @@
-// A data variable where page content is stored
+// Store content of different pages
 var levels = [
   {
     title: '<h2>Introduction</h2>',
@@ -26,25 +26,45 @@ var levels = [
   }
 ];
 
-// Select the elements where content needs to be inserted
-var title = document.getElementById('page-title');
-var content = document.getElementById('page-content');
+// Keep track of the current level
+var currentLevel = 0;
 
 // Load the content of any given level
+var title = document.getElementById('page-title');
+var content = document.getElementById('page-content');
 function loadLevel(index) {
+  // Load page content
   title.innerHTML = levels[index].title;
   content.innerHTML = levels[index].content;
+  // Update current level
+  currentLevel = index;
 }
 
-// Link the icons to the levels
+// Load the content based on which button is clicked
 var navTop = document.getElementById('nav-top');
 navTop.addEventListener('click', function(e) {
-  // If the click happens on a button
+  // Check if the click happens on a button
   var btnClicked = e.target.classList.contains("nav-btn");
   if (btnClicked) {
-    loadLevel(e.target.dataset.level);
+    loadLevel(Number(e.target.dataset.level));
+    updateIcons(e.target);
   }
 });
+
+// Set active icon as pink and the rest as grey
+function updateIcons(activeIcon) {
+  // Remove "active" from all buttons
+  var buttons = document.querySelectorAll('.nav-btn');
+  buttons.forEach(function(button) {
+    button.classList.remove("active");
+  });
+  // Add "active" to active icon
+  activeIcon.classList.add("active");
+}
+
+
+// Load level 0 on page load
+loadLevel(0);
 
 
 

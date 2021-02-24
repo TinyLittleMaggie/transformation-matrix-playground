@@ -96,23 +96,23 @@ h2 {
 
 /* inactive */
 
-#btn-intro.inactive {
+#btn-intro {
   background: url(../icons/intro/inactive.svg);
 }
 
-#btn-translate.inactive {
+#btn-translate {
   background: url(../icons/translate/inactive.svg);
 }
 
-#btn-scale.inactive {
+#btn-scale {
   background: url(../icons/scale/inactive.svg);
 }
 
-#btn-shear.inactive {
+#btn-shear {
   background: url(../icons/shear/inactive.svg);
 }
 
-#btn-rotate.inactive {
+#btn-rotate {
   background: url(../icons/rotate/inactive.svg);
 }
 
