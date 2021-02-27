@@ -171,37 +171,42 @@ h2 {
   justify-content: center;
 }
 
-.pagination .previous,
-.pagination .next {
+.pagination #previous,
+.pagination #next {
   font-weight: bold;
   color: #F65485;
   cursor: pointer;
   position: absolute;
 }
 
-.pagination .previous {
+.pagination #previous {
   left: 0;
   top: 0;
 }
 
-.pagination .next {
+.pagination #next {
   right: 0;
   top: 0;
 }
 
-.pagination .dots {
+.pagination .disabled {
+  color: rgba(160, 160, 160, 0.5) !important;
+  cursor: default !important;
+}
+
+.pagination #dots {
   cursor: default;
 }
 
-.pagination .dots .dot {
+.pagination #dots .dot {
   width: 6px;
   height: 6px;
   border-radius: 3px;
   background-color: rgba(246, 84, 133, 0.2);
   display: inline-block;
-  margin-right: 8px;
+  margin-right: 12px;
 }
 
-.pagination .dots .dot.active {
+.pagination #dots .dot.active {
   background-color: rgba(246, 84, 133);
 }
