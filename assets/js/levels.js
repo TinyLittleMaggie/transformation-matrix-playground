@@ -7,11 +7,11 @@ var currentLevel = 0;
 var levels = [
   {
     title: '<h2>Introduction</h2>',
-    content: '<div class="formula"><img src="./assets/images/formula-1.1.png" alt="transform point (x, y) to (x\', y\')" class="w-64"></div>'
+    content: '<p>If you move a point <i>(x, y)</i> to a new position <i>(x’, y’)</i> using the following rules:</p><div class="formula"><p class="text-center"><i>x’  =  ax  +  cy  +  e</i></p><p class="text-center"><i>y’  =  bx  +  dy  +  f</i></p></div><p>where <i>a, b, c, d, e, f</i> are values that you choose, we say that you are applying a <i>transformation</i> to point <i>(x, y)</i>:</p><div class="formula"><img src="./assets/images/formula-1.1.png" alt="transform point (x, y) to (x’, y’)" class="w-64"></div><p>Now if you move <b>every point</b> on a shape to a new position using the same rules and the same set of <i>a, b, c, d, e, f</i> values, we say that you are applying a transformation <b>to the shape</b>.</p>'
   },
   {
-    title: '<h2>Introduction (part 2)</h2>',
-    content: '<p>Content for page 2 - introduction continued...</p>'
+    title: '<h2>Introduction</h2>',
+    content: '<p>The transformation is defined by the values of <i>a, b, c, d, e, f</i>.  A more fancy way of describing the transformation is to use a 3x3 matrix (highlighted in pink below):</p><div class="formula"><img src="./assets/images/formula-1.2.png" class="w-64"></div><p class="mb-4">If you know a little bit of linear algebra, you’ll notice that the above equation says basically the same thing as the two rules we mentioned earlier. (So it’s ok to not know any linear algebra at all!)</p><p>In this playground, you’ll explore how the values of <i>a, b, c, d, e, f</i> can affect the transformation result. </p>'
   },
   {
     title: '<h2>Translate</h2>',
