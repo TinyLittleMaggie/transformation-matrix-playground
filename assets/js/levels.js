@@ -1,3 +1,5 @@
+/* ---------------------------- Data & Elements ---------------------------- */
+
 // Store content of different pages
 var levels = [
   {
@@ -26,12 +28,16 @@ var levels = [
   }
 ];
 
-// Keep track of the current level
+// Select elements on the page
 var currentLevel = 0;
-
-// Load the content of any given level
+var navTop = document.getElementById('nav-top');
+var navButtons = document.querySelectorAll('.nav-btn');
 var title = document.getElementById('page-title');
 var content = document.getElementById('page-content');
+
+/* ------------------------------- Functions ------------------------------- */
+
+// Load the content of any given level
 function loadLevel(index) {
   // Load page content
   title.innerHTML = levels[index].title;
@@ -40,8 +46,19 @@ function loadLevel(index) {
   currentLevel = index;
 }
 
+// Set active icon as pink and the rest as grey
+function updateIcons(activeIcon) {
+  // Remove "active" from all nav buttons
+  navButtons.forEach(function(button) {
+    button.classList.remove("active");
+  });
+  // Add "active" to active icon
+  activeIcon.classList.add("active");
+}
+
+/* ---------------------------- Event listeners ---------------------------- */
+
 // Load the content based on which button is clicked
-var navTop = document.getElementById('nav-top');
 navTop.addEventListener('click', function(e) {
   // Check if the click happens on a button
   var btnClicked = e.target.classList.contains("nav-btn");
@@ -51,22 +68,7 @@ navTop.addEventListener('click', function(e) {
   }
 });
 
-// Set active icon as pink and the rest as grey
-function updateIcons(activeIcon) {
-  // Remove "active" from all buttons
-  var buttons = document.querySelectorAll('.nav-btn');
-  buttons.forEach(function(button) {
-    button.classList.remove("active");
-  });
-  // Add "active" to active icon
-  activeIcon.classList.add("active");
-}
-
+/* ----------------------------- Initialization ---------------------------- */
 
 // Load level 0 on page load
 loadLevel(0);
-
-
-
-
-

@@ -1,4 +1,4 @@
-/* ---------------------- */
+/* ------------------ Global settings ------------------ */
 
 html {
  box-sizing: border-box;
@@ -37,8 +37,6 @@ h2 {
   align-items: center;
 }
 
-/* ---------------------- */
-
 .container {
   max-width: 1050px;
   height: 100%;
@@ -46,7 +44,7 @@ h2 {
   padding: 0 20px;
 }
 
-/* ---------------------- */
+/* ----------------------- Header ---------------------- */
 
 #header {
   background-color: #F65485;
@@ -60,7 +58,7 @@ h2 {
   align-items: center;
 }
 
-/* ---------------------- */
+/* -------------------- Page layout -------------------- */
 
 #main .container {
   padding: 56px 20px;
@@ -84,7 +82,12 @@ h2 {
   padding-left: 20px;
 }
 
-/* ---------------------- */
+#page-content {
+  height: 315px;
+  overflow: scroll;
+}
+
+/* ------------------- Top Navigation ------------------ */
 
 .nav-btn {
   width: 40px;
@@ -160,40 +163,37 @@ h2 {
   background: url(../icons/rotate/active.svg);
 }
 
-/* ---------------------- */
+/* --------------------- Pagination -------------------- */
 
-#page-content {
-  height: 315px;
-  overflow: scroll;
-}
-
-/* ---------------------- */
-
-.nav-bottom {
+.pagination {
   position: relative;
   display: flex;
   justify-content: center;
 }
 
-.nav-bottom .previous,
-.nav-bottom .next {
+.pagination .previous,
+.pagination .next {
   font-weight: bold;
   color: #F65485;
   cursor: pointer;
   position: absolute;
 }
 
-.nav-bottom .previous {
+.pagination .previous {
   left: 0;
   top: 0;
 }
 
-.nav-bottom .next {
+.pagination .next {
   right: 0;
   top: 0;
 }
 
-.nav-bottom .dots .dot {
+.pagination .dots {
+  cursor: default;
+}
+
+.pagination .dots .dot {
   width: 6px;
   height: 6px;
   border-radius: 3px;
@@ -202,6 +202,6 @@ h2 {
   margin-right: 8px;
 }
 
-.nav-bottom .dots .dot.active {
+.pagination .dots .dot.active {
   background-color: rgba(246, 84, 133);
 }
