@@ -9,6 +9,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
   <!-- Tailwind CSS -->
   <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+  <!-- Simplebar -->
+  <link rel="stylesheet" href="https://unpkg.com/simplebar@latest/dist/simplebar.css"/>
+  <script src="https://unpkg.com/simplebar@latest/dist/simplebar.min.js"></script>
   <!-- Main stylesheet for project -->
   <link rel="stylesheet" href="./assets/styles/main.css">
   <!-- Script for displaying content on the left -->
@@ -25,19 +28,18 @@
   <div id="main">
     <div class="container">
       <div class="left-panel">
-        <div id="nav-top" class="mb-4">
+        <div id="nav-top" class="mb-5">
           <div class="nav-btn active" id="btn-intro" data-level="0"></div>
-          <div class="nav-btn" id="btn-translate" data-level="2"></div>
-          <div class="nav-btn" id="btn-scale" data-level="3"></div>
-          <div class="nav-btn" id="btn-shear" data-level="4"></div>
-          <div class="nav-btn" id="btn-rotate" data-level="5"></div>
+          <div class="nav-btn" id="btn-translate" data-level="1"></div>
+          <div class="nav-btn" id="btn-scale" data-level="2"></div>
+          <div class="nav-btn" id="btn-shear" data-level="3"></div>
+          <div class="nav-btn" id="btn-rotate" data-level="4"></div>
         </div>
-        <div id="page-title" class="mb-2"></div>
-        <div id="page-content"></div>
-        <div class="pagination mt-4">
-          <div id="previous" class="disabled">← Previous</div>
-          <ul id="dots"></ul>
-          <div id="next">Next →</div>
+        <div id="page-title" class="mb-4"></div>
+        <div id="page-content">
+          <div class="instructions"></div>
+          <div class="controls"></div>
+          <div class="matrix-values"></div>
         </div>
       </div>
       <div class="right-panel">
