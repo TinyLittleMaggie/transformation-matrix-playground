@@ -1,13 +1,13 @@
 /* Drawing helper functions */
 
-function drawCircle(x, y, radius) {
+function circle(x, y, radius) {
   ctx.fillStyle = "#2D2D2D";
   ctx.beginPath();
   ctx.arc(x, y, radius, 0, 2 * Math.PI);
   ctx.fill();
 }
 
-function drawDashedLine(x1, y1, x2, y2, dash, gap) {
+function dashedLine(x1, y1, x2, y2, dash, gap) {
   ctx.strokeStyle = "#2D2D2D";
   ctx.lineWidth = 1;
   ctx.lineCap = "round";
@@ -18,7 +18,7 @@ function drawDashedLine(x1, y1, x2, y2, dash, gap) {
   ctx.stroke();
 }
 
-function drawTextString(x, y, string) {
+function textString(x, y, string) {
   ctx.fillStyle = "#2D2D2D";
   ctx.font = 'italic 18px serif';
   ctx.save();
@@ -31,25 +31,25 @@ function drawTextString(x, y, string) {
    based on the inputs from the left panel */
 
 function drawIntro() {
-  drawCircle(40, 70, 5);
-  drawCircle(160, 180, 5);
-  drawDashedLine(40, 70, 160, 180, 2, 4);
-  drawTextString(50, 50, "(x, y)");
-  drawTextString(170, 160, "(x’, y’)");
+  circle(40, 70, 5);
+  circle(160, 180, 5);
+  dashedLine(40, 70, 160, 180, 2, 4);
+  textString(50, 50, "(x, y)");
+  textString(170, 160, "(x’, y’)");
 }
 
 function drawTranslate() {
-  drawTextString(170, 160, "Translate!");
+  textString(170, 160, "Translate!");
 }
 
 function drawScale() {
-  drawTextString(170, 160, "Scale!");
+  textString(170, 160, "Scale!");
 }
 
 function drawShear() {
-  drawTextString(170, 160, "Shear");
+  textString(170, 160, "Shear!");
 }
 
 function drawRotate() {
-  drawTextString(170, 160, "Rotate!");
+  textString(170, 160, "Rotate!");
 }
