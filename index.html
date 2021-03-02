@@ -19,17 +19,19 @@
   <!-- Set up the canvas -->
   <script src="./assets/js/canvas.js" defer></script>
   <!-- Drawing functions for each level -->
-  <script src="./assets/js/drawing-functions.js"></script>
+  <script src="./assets/js/drawing-functions.js" defer></script>
   <!-- Level control -->
   <script src="./assets/js/levels.js" defer></script>
 
 </head>
 <body>
+  <!-- Site header -->
   <div id="header">
     <div class="container">
       <h1 id="site-title">A Transformation Matrix Playground</h1>
     </div>
   </div>
+  <!-- Main page content -->
   <div id="main">
     <div class="container">
       <div class="left-panel">
@@ -53,6 +55,13 @@
         </canvas>
       </div>
     </div>
+  </div>
+  <!-- The "F" image -->
+  <div style="display:none;">
+    <img id="f-img-original"
+         src="./assets/images/F-original.png">
+    <img id="f-img-transformed"
+         src="./assets/images/F-transformed.png">
   </div>
 </body>
 </html>

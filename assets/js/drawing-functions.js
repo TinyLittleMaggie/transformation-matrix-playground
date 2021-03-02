@@ -1,3 +1,10 @@
+/* Configurations */
+
+const imgX = 20;
+const imgY = 20;
+const imgW = 60;
+const imgH = 80;
+
 /* Drawing helper functions */
 
 function circle(x, y, radius) {
@@ -27,6 +34,24 @@ function textString(x, y, string) {
   ctx.restore();
 }
 
+function drawOriginalImg() {
+  var image = document.getElementById('f-img-original');
+  ctx.drawImage(image, imgX, imgY, imgW, imgH);
+}
+
+function drawTransformedImg(a, b, c, d, e, f) {
+  // Grab the source image
+  var image = document.getElementById('f-img-transformed');
+  // Save canvas state
+  ctx.save();
+  // Apply transformation
+  ctx.transform(a, b, c, d, e, f);
+  // Draw the transformed image
+  ctx.drawImage(image, imgX, imgY, imgW, imgH);
+  // Restore canvas state
+  ctx.restore();
+}
+
 /* Functions that describe how things should be drawn on the canvas
    based on the inputs from the left panel */
 
@@ -39,17 +64,29 @@ function drawIntro() {
 }
 
 function drawTranslate() {
-  textString(170, 160, "Translate!");
+  // Draw the original image
+  drawOriginalImg();
+  // Draw the transformed image
+  drawTransformedImg(1, 0, 0, 1, 20, 40);
 }
 
 function drawScale() {
-  textString(170, 160, "Scale!");
+  // Draw the original image
+  drawOriginalImg();
+  // Draw the transformed image
+  drawTransformedImg(2, 0, 0, 2, 0, 0);
 }
 
 function drawShear() {
-  textString(170, 160, "Shear!");
+  // Draw the original image
+  drawOriginalImg();
+  // Draw the transformed image
+  drawTransformedImg(1, 0, 0.5, 1, 0, 0);
 }
 
 function drawRotate() {
-  textString(170, 160, "Rotate!");
+  // Draw the original image
+  drawOriginalImg();
+  // Draw the transformed image
+  drawTransformedImg(-0.59, -0.81, 0.81, -0.59, 0, 0);
 }
