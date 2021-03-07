@@ -45,7 +45,18 @@
         <div id="page-title" class="mb-4"></div>
         <div id="page-content">
           <div class="instructions"></div>
-          <div class="controls"></div>
+          <div class="controls">
+            <div class="range-slider-container">
+              <label for="matrix-e" class="label">f</label>
+              <div class="track-container">
+                <input class="range-slider" type="range" id="matrix-e" name="matrix-e"
+                       min="-300" max="300" value="-100" step="0.1">
+                <div class="value-label">-100</div>
+                <div class="min-value">-300</div>
+                <div class="max-value">300</div>
+              </div>
+            </div>
+          </div>
           <div class="matrix-values"></div>
         </div>
       </div>

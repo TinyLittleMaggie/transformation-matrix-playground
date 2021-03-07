@@ -84,6 +84,11 @@ h2 {
   overflow: scroll;
 }
 
+.controls {
+  width: 50%;
+  padding-right: 15px;
+}
+
 /* ------------------- Top Navigation ------------------ */
 
 .nav-btn {
@@ -162,13 +167,85 @@ h2 {
 
 /* --------------------- Scrollbar --------------------- */
 
-.simplebar-track {
+.simplebar-range-slider {
   background-color: rgba(246, 84, 133, 0.1);
   border-radius: 6px;
 }
 
 .simplebar-scrollbar:before {
-  background-color: rgba(246, 84, 133);
+  background-color: rgb(246, 84, 133);
 }
 
+/* ------------------- Range sliders ------------------- */
 
+.range-slider-container {
+  display: flex;
+  align-items: center;
+}
+
+.range-slider-container .label {
+  padding-left: 4px;
+  margin-right: 20px;
+  font-style: italic;
+  color: rgb(246, 84, 133);
+}
+
+.range-slider-container .track-container {
+  flex-grow: 1;
+  position: relative;
+  padding: 16px 0;
+}
+
+.range-slider-container .range-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  /*background-color: rgb(246, 84, 133);*/
+  background: linear-gradient(90deg, rgba(246, 84, 133, 1) 33%, rgba(246, 84, 133, 0.2) 33%);
+  height: 4px;
+  border-radius: 2px;
+  outline: none;
+}
+
+.range-slider-container .range-slider::-webkit-slider-thumb {
+  /* Chrome, Opera, Safari, Edge */
+  -webkit-appearance: none;
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  background: rgb(246, 84, 133);
+  border-radius: 6px;
+  cursor: grab;
+}
+
+.range-slider-container .range-slider::-moz-range-thumb {
+  /* Firefox */
+  width: 12px;
+  height: 12px;
+  background: rgb(246, 84, 133);
+  border-radius: 6px;
+  cursor: grab;
+  border: none;
+}
+
+.range-slider-container .value-label {
+  position: absolute;
+  left: calc(33% - 16px);
+  top: 2px;
+  font-size: 14px;
+  color: rgb(246, 84, 133);
+}
+
+.range-slider-container .min-value {
+  position: absolute;
+  left: 0;
+  font-size: 9px;
+  color: rgb(246, 84, 133);
+}
+
+.range-slider-container .max-value {
+  position: absolute;
+  right: 0;
+  font-size: 9px;
+  color: rgb(246, 84, 133);
+}

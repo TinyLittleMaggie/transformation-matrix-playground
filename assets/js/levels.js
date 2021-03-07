@@ -94,7 +94,7 @@ navTop.addEventListener('click', function(e) {
 /* ----------------------------- Initialization ---------------------------- */
 
 // Load level 0 on page load
-loadLevel(0);
+// loadLevel(0);
 
 // Force the scrollbar to show & apply custom styling
 new SimpleBar(document.getElementById('page-content'), {
