@@ -200,8 +200,6 @@ h2 {
   -webkit-appearance: none;
   appearance: none;
   width: 100%;
-  /*background-color: rgb(246, 84, 133);*/
-  background: linear-gradient(90deg, rgba(246, 84, 133, 1) 33%, rgba(246, 84, 133, 0.2) 33%);
   height: 4px;
   border-radius: 2px;
   outline: none;
@@ -230,7 +228,8 @@ h2 {
 
 .range-slider-container .value-label {
   position: absolute;
-  left: calc(33% - 16px);
+  min-width: 34px;
+  text-align: center;
   top: 2px;
   font-size: 14px;
   color: rgb(246, 84, 133);
