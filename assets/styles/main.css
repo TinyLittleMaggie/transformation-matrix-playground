@@ -173,7 +173,7 @@ h2 {
 }
 
 .simplebar-scrollbar:before {
-  background-color: rgb(246, 84, 133);
+  background-color: rgba(246, 84, 133, 1);
 }
 
 /* ------------------- Range sliders ------------------- */
@@ -187,7 +187,18 @@ h2 {
   padding-left: 4px;
   margin-right: 20px;
   font-style: italic;
-  color: rgb(246, 84, 133);
+}
+
+.range-slider-container.master .label {
+  color: rgba(45, 45, 45, 1);
+}
+
+.range-slider-container.active .label {
+  color: rgba(246, 84, 133, 1);
+}
+
+.range-slider-container.disabled .label {
+  color: rgba(160, 160, 160, 1);
 }
 
 .range-slider-container .track-container {
@@ -211,7 +222,6 @@ h2 {
   appearance: none;
   width: 12px;
   height: 12px;
-  background: rgb(246, 84, 133);
   border-radius: 6px;
   cursor: grab;
 }
@@ -220,10 +230,30 @@ h2 {
   /* Firefox */
   width: 12px;
   height: 12px;
-  background: rgb(246, 84, 133);
   border-radius: 6px;
   cursor: grab;
   border: none;
+}
+
+.range-slider-container.master .range-slider::-webkit-slider-thumb {
+  background: rgba(45, 45, 45, 1);
+}
+.range-slider-container.master .range-slider::-moz-range-thumb {
+  background: rgba(45, 45, 45, 1);
+}
+
+.range-slider-container.active .range-slider::-webkit-slider-thumb {
+  background: rgba(246, 84, 133, 1);
+}
+.range-slider-container.active .range-slider::-moz-range-thumb {
+  background: rgba(246, 84, 133, 1);
+}
+
+.range-slider-container.disabled .range-slider::-webkit-slider-thumb {
+  background: rgba(160, 160, 160, 1);
+}
+.range-slider-container.disabled .range-slider::-moz-range-thumb {
+  background: rgba(160, 160, 160, 1);
 }
 
 .range-slider-container .value-label {
@@ -232,19 +262,34 @@ h2 {
   text-align: center;
   top: 2px;
   font-size: 14px;
-  color: rgb(246, 84, 133);
 }
 
 .range-slider-container .min-value {
   position: absolute;
   left: 0;
   font-size: 9px;
-  color: rgb(246, 84, 133);
 }
 
 .range-slider-container .max-value {
   position: absolute;
   right: 0;
   font-size: 9px;
-  color: rgb(246, 84, 133);
+}
+
+.range-slider-container.master .value-label,
+.range-slider-container.master .min-value,
+.range-slider-container.master .max-value {
+  color: rgba(45, 45, 45, 1);
+}
+
+.range-slider-container.active .value-label,
+.range-slider-container.active .min-value,
+.range-slider-container.active .max-value {
+  color: rgba(246, 84, 133, 1);
+}
+
+.range-slider-container.disabled .value-label,
+.range-slider-container.disabled .min-value,
+.range-slider-container.disabled .max-value {
+  color: rgba(160, 160, 160, 1);
 }
