@@ -55,7 +55,7 @@ function drawTransformedImg(a, b, c, d, e, f) {
 /* Functions that describe how things should be drawn on the canvas
    based on the inputs from the left panel */
 
-function drawIntro() {
+function introLevel() {
   circle(40, 70, 5);
   circle(160, 180, 5);
   dashedLine(40, 70, 160, 180, 2, 4);
@@ -63,28 +63,39 @@ function drawIntro() {
   textString(170, 160, "(x’, y’)");
 }
 
-function drawTranslate() {
-  // Draw the original image
-  drawOriginalImg();
-  // Draw the transformed image
-  drawTransformedImg(1, 0, 0, 1, 20, 40);
+function translateLevel() {
+  // Select the range slider inputs
+  var e = document.getElementById('matrix-e');
+  var f = document.getElementById('matrix-f');
+  // Define the "translate" function and execute it once
+  function translate() {
+    // Clear the canvas & draw the original image
+    resetCanvas();
+    drawOriginalImg();
+    // Draw the transformed image
+    drawTransformedImg(1, 0, 0, 1, e.value, f.value);
+  }
+  translate();
+  // Update the drawings whenever the e & f inputs change
+  e.addEventListener('input', translate);
+  f.addEventListener('input', translate);
 }
 
-function drawScale() {
+function scaleLevel() {
   // Draw the original image
   drawOriginalImg();
   // Draw the transformed image
   drawTransformedImg(2, 0, 0, 2, 0, 0);
 }
 
-function drawShear() {
+function shearLevel() {
   // Draw the original image
   drawOriginalImg();
   // Draw the transformed image
   drawTransformedImg(1, 0, 0.5, 1, 0, 0);
 }
 
-function drawRotate() {
+function rotateLevel() {
   // Draw the original image
   drawOriginalImg();
   // Draw the transformed image
