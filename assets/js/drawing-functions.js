@@ -64,10 +64,21 @@ function drawIntro() {
 }
 
 function drawTranslate() {
-  // Draw the original image
-  drawOriginalImg();
-  // Draw the transformed image
-  drawTransformedImg(1, 0, 0, 1, 20, 40);
+  // Select the range slider inputs
+  var e = document.getElementById('matrix-e');
+  var f = document.getElementById('matrix-f');
+  // Define the "translate" function and execute it once
+  function translate() {
+    // Clear the canvas & draw the original image
+    resetCanvas();
+    drawOriginalImg();
+    // Draw the transformed image
+    drawTransformedImg(1, 0, 0, 1, e.value, f.value);
+  }
+  translate();
+  // Add event listeners to the inputs
+  e.addEventListener('input', translate);
+  f.addEventListener('input', translate);
 }
 
 function drawScale() {
