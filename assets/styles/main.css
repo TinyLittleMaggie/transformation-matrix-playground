@@ -223,7 +223,6 @@ h2 {
   width: 12px;
   height: 12px;
   border-radius: 6px;
-  cursor: grab;
 }
 
 .range-slider-container .range-slider::-moz-range-thumb {
@@ -231,22 +230,25 @@ h2 {
   width: 12px;
   height: 12px;
   border-radius: 6px;
-  cursor: grab;
   border: none;
 }
 
 .range-slider-container.master .range-slider::-webkit-slider-thumb {
   background: rgba(45, 45, 45, 1);
+  cursor: grab;
 }
 .range-slider-container.master .range-slider::-moz-range-thumb {
   background: rgba(45, 45, 45, 1);
+  cursor: grab;
 }
 
 .range-slider-container.active .range-slider::-webkit-slider-thumb {
   background: rgba(246, 84, 133, 1);
+  cursor: grab;
 }
 .range-slider-container.active .range-slider::-moz-range-thumb {
   background: rgba(246, 84, 133, 1);
+  cursor: grab;
 }
 
 .range-slider-container.disabled .range-slider::-webkit-slider-thumb {
