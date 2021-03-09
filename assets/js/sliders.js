@@ -8,6 +8,7 @@ function initializeSlider(sliderContainer) {
   var minValue = sliderContainer.querySelector('.min-value');
   var maxValue = sliderContainer.querySelector('.max-value');
   var valueLabel = sliderContainer.querySelector('.value-label');
+  var step = sliderInput.step;
 
   /* ------------------------------- Functions ------------------------------- */
 
@@ -29,16 +30,29 @@ function initializeSlider(sliderContainer) {
     }
   }
 
+  // Determine the number of decimal places to display based on the "step" attr.
+  function getDecimalPlaces(step) {
+    var decimals = step.split(".")[1];
+    if (decimals === undefined) {
+      return 0;
+    } else {
+      return decimals.length;
+    }
+  }
+
   // Display min & max values based on <input> attributes
   function setRangeLabels() {
-    minValue.innerText = sliderInput.min;
-    maxValue.innerText = sliderInput.max;
+    var decimals = getDecimalPlaces(step);
+    minValue.innerText = Number(sliderInput.min).toFixed(decimals);
+    maxValue.innerText = Number(sliderInput.max).toFixed(decimals);
   }
 
   // Display the slider value right above the thumb
   function setValueLabel() {
+    // Get decimal places
+    var decimals = getDecimalPlaces(step);
     // Display the value
-    valueLabel.innerText = sliderInput.value;
+    valueLabel.innerText = Number(sliderInput.value).toFixed(decimals);
     // Adjust the position
     valueLabel.style.left = "calc(" + getPercentage() + "% - 17px)";
   }
