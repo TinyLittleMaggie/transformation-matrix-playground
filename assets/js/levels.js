@@ -64,19 +64,19 @@ function loadLevel(index) {
 function drawOnCanvas(index) {
   switch (index) {
     case 0:
-      drawIntro();
+      introLevel();
       break;
     case 1:
-      drawTranslate();
+      translateLevel();
       break;
     case 2:
-      drawScale();
+      scaleLevel();
       break;
     case 3:
-      drawShear();
+      shearLevel();
       break;
     case 4:
-      drawRotate();
+      rotateLevel();
       break;
   }
 }
