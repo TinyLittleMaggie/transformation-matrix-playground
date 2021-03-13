@@ -1,11 +1,11 @@
-/* Configurations */
+/* ============================= Configurations ============================= */
 
 const imgX = 20;
 const imgY = 20;
 const imgW = 60;
 const imgH = 80;
 
-/* Drawing helper functions */
+/* ======================== Drawing helper functions ======================== */
 
 function circle(x, y, radius) {
   ctx.fillStyle = "#2D2D2D";
@@ -52,7 +52,23 @@ function drawTransformedImg(a, b, c, d, e, f) {
   ctx.restore();
 }
 
-/* Functions that describe how things should be drawn on the canvas
+/* ======= Function for updating the values in the matrix & equations ======= */
+
+// Update matrix values in real-time
+function updateMatrixValues(symbol) {
+
+  // Get the current value of an input
+  var newValue = document.getElementById('slider-' + symbol).value;
+
+  // Update the values in the matrix & the quations
+  document.getElementById('matrix-' + symbol).innerText = newValue;
+  document.getElementById('equation-' + symbol).innerText = newValue;
+
+}
+
+/* ==================== Drawing functions for each level ==================== */
+
+/* Below are functions that describe how things should be drawn on the canvas
    based on the inputs from the left panel */
 
 function introLevel() {
@@ -77,8 +93,14 @@ function translateLevel() {
   }
   translate();
   // Update the drawings whenever the e & f inputs change
-  e.addEventListener('input', translate);
-  f.addEventListener('input', translate);
+  e.addEventListener('input', function() {
+    translate();
+    updateMatrixValues("e");
+  });
+  f.addEventListener('input', function() {
+    translate();
+    updateMatrixValues("f");
+  });
 }
 
 function scaleLevel() {

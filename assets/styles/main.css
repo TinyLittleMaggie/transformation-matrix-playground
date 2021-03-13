@@ -361,6 +361,7 @@ h2 {
 
 #bottom-half .equations {
   font-style: italic;
+  min-width: 125px;
 }
 
 #bottom-half .equations .row-2,
