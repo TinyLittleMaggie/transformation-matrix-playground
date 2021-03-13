@@ -132,10 +132,10 @@ function loadInitialValues(index) {
     matrixD.innerText = d;
     matrixE.innerText = e;
     matrixF.innerText = f;
-    equationA.innerText = (a === 0) ? "0" : ((a === 1) ? "x" : (a + "x"));
-    equationB.innerText = (b === 0) ? "0" : ((b === 1) ? "x" : (b + "x"));
-    equationC.innerText = (c === 0) ? "0" : ((c === 1) ? "y" : (c + "y"));
-    equationD.innerText = (d === 0) ? "0" : ((d === 1) ? "y" : (d + "y"));
+    equationA.innerText = formatNumber(a, "x");
+    equationB.innerText = formatNumber(b, "x");
+    equationC.innerText = formatNumber(c, "y");
+    equationD.innerText = formatNumber(d, "y");
     equationE.innerText = e;
     equationF.innerText = f;
   }
@@ -145,6 +145,25 @@ function loadInitialValues(index) {
       document.getElementById('matrix-' + symbol).classList.add("highlighted");
       document.getElementById('equation-' + symbol).classList.add("highlighted");
     });
+  }
+}
+
+// Small helper function for formatting numbers in the equations
+// A) Example: formatNumber(a, "x");
+//    - returns "0" when a = 0
+//    - returns "x" when a = 1
+//    - returns "(-8x)" when a = -8
+//    - returns "8x" when a = 8
+// B) Set variable as empty string "" when there's no need to append a variable to it
+function formatNumber(number, variable) {
+  if (number === 0) {
+    return "0";
+  } else if (number === 1) {
+    return variable;
+  } else if (number < 0) {
+    return "(" + number + variable + ")";
+  } else {
+    return (number + variable);
   }
 }
 
