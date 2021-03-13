@@ -13,7 +13,7 @@ var levels = [
   {
     title:        '<h2>Translate</h2>',
     instructions: '<p class="mb-3"><i>to move a shape from one place to another</i></p>',
-    controls:     '<div class="range-slider-container disabled"> <label for="slider-a" class="label">a</label><div class="track-container"> <input class="range-slider" type="range" id="slider-a" name="slider-a" min="-3" max="3" value="1" step="0.1" disabled><div class="value-label"></div><div class="min-value"></div><div class="max-value"></div></div></div><div class="range-slider-container disabled"> <label for="slider-b" class="label">b</label><div class="track-container"> <input class="range-slider" type="range" id="slider-b" name="slider-b" min="-3" max="3" value="0" step="0.1" disabled><div class="value-label"></div><div class="min-value"></div><div class="max-value"></div></div></div><div class="range-slider-container disabled"> <label for="slider-c" class="label">c</label><div class="track-container"> <input class="range-slider" type="range" id="slider-c" name="slider-c" min="-3" max="3" value="0" step="0.1" disabled><div class="value-label"></div><div class="min-value"></div><div class="max-value"></div></div></div><div class="range-slider-container disabled"> <label for="slider-d" class="label">d</label><div class="track-container"> <input class="range-slider" type="range" id="slider-d" name="slider-d" min="-3" max="3" value="1" step="0.1" disabled><div class="value-label"></div><div class="min-value"></div><div class="max-value"></div></div></div><div class="range-slider-container active"> <label for="slider-e" class="label">e</label><div class="track-container"> <input class="range-slider" type="range" id="slider-e" name="slider-e" min="-300" max="300" value="0" step="1"><div class="value-label"></div><div class="min-value"></div><div class="max-value"></div></div></div><div class="range-slider-container active"> <label for="slider-f" class="label">f</label><div class="track-container"> <input class="range-slider" type="range" id="slider-f" name="slider-f" min="-300" max="300" value="0" step="1"><div class="value-label"></div><div class="min-value"></div><div class="max-value"></div></div></div>',
+    controls:     '<div class="range-slider-container disabled"> <label for="slider-a" class="label">a</label><div class="track-container"> <input class="range-slider" type="range" id="slider-a" name="slider-a" min="-3" max="3" value="1" step="0.1" disabled><div class="value-label"></div><div class="min-value"></div><div class="max-value"></div></div></div><div class="range-slider-container disabled"> <label for="slider-b" class="label">b</label><div class="track-container"> <input class="range-slider" type="range" id="slider-b" name="slider-b" min="-3" max="3" value="0" step="0.1" disabled><div class="value-label"></div><div class="min-value"></div><div class="max-value"></div></div></div><div class="range-slider-container disabled"> <label for="slider-c" class="label">c</label><div class="track-container"> <input class="range-slider" type="range" id="slider-c" name="slider-c" min="-3" max="3" value="0" step="0.1" disabled><div class="value-label"></div><div class="min-value"></div><div class="max-value"></div></div></div><div class="range-slider-container disabled"> <label for="slider-d" class="label">d</label><div class="track-container"> <input class="range-slider" type="range" id="slider-d" name="slider-d" min="-3" max="3" value="1" step="0.1" disabled><div class="value-label"></div><div class="min-value"></div><div class="max-value"></div></div></div><div class="range-slider-container active"> <label for="slider-e" class="label">e</label><div class="track-container"> <input class="range-slider" type="range" id="slider-e" name="slider-e" min="-350" max="350" value="0" step="1"><div class="value-label"></div><div class="min-value"></div><div class="max-value"></div></div></div><div class="range-slider-container active"> <label for="slider-f" class="label">f</label><div class="track-container"> <input class="range-slider" type="range" id="slider-f" name="slider-f" min="-350" max="350" value="0" step="1"><div class="value-label"></div><div class="min-value"></div><div class="max-value"></div></div></div>',
     initialValues: [1, 0, 0, 1, 0, 0], // Matrix values [a, b, c, d, e, f]
     enabledSliders: ["e", "f"]
   },
@@ -132,10 +132,10 @@ function loadInitialValues(index) {
     matrixD.innerText = d;
     matrixE.innerText = e;
     matrixF.innerText = f;
-    equationA.innerText = (a === 0) ? "0" : ((a === 1) ? "x" : (a + "x"));
-    equationB.innerText = (b === 0) ? "0" : ((b === 1) ? "x" : (b + "x"));
-    equationC.innerText = (c === 0) ? "0" : ((c === 1) ? "y" : (c + "y"));
-    equationD.innerText = (d === 0) ? "0" : ((d === 1) ? "y" : (d + "y"));
+    equationA.innerText = formatNumber(a, "x");
+    equationB.innerText = formatNumber(b, "x");
+    equationC.innerText = formatNumber(c, "y");
+    equationD.innerText = formatNumber(d, "y");
     equationE.innerText = e;
     equationF.innerText = f;
   }
@@ -145,6 +145,25 @@ function loadInitialValues(index) {
       document.getElementById('matrix-' + symbol).classList.add("highlighted");
       document.getElementById('equation-' + symbol).classList.add("highlighted");
     });
+  }
+}
+
+// Small helper function for formatting numbers in the equations
+// A) Example: formatNumber(a, "x");
+//    - returns "0" when a = 0
+//    - returns "x" when a = 1
+//    - returns "(-8x)" when a = -8
+//    - returns "8x" when a = 8
+// B) Set variable as empty string "" when there's no need to append a variable to it
+function formatNumber(number, variable) {
+  if (number === 0) {
+    return "0";
+  } else if (number === 1) {
+    return variable;
+  } else if (number < 0) {
+    return "(" + number + variable + ")";
+  } else {
+    return (number + variable);
   }
 }
 
