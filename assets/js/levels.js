@@ -13,7 +13,9 @@ var levels = [
   {
     title:        '<h2>Translate</h2>',
     instructions: '<p class="mb-3"><i>to move a shape from one place to another</i></p>',
-    controls:     '<div class="range-slider-container disabled"> <label for="matrix-a" class="label">a</label><div class="track-container"> <input class="range-slider" type="range" id="matrix-a" name="matrix-a" min="-3" max="3" value="1" step="0.1" disabled><div class="value-label"></div><div class="min-value"></div><div class="max-value"></div></div></div><div class="range-slider-container disabled"> <label for="matrix-b" class="label">b</label><div class="track-container"> <input class="range-slider" type="range" id="matrix-b" name="matrix-b" min="-3" max="3" value="0" step="0.1" disabled><div class="value-label"></div><div class="min-value"></div><div class="max-value"></div></div></div><div class="range-slider-container disabled"> <label for="matrix-c" class="label">c</label><div class="track-container"> <input class="range-slider" type="range" id="matrix-c" name="matrix-c" min="-3" max="3" value="0" step="0.1" disabled><div class="value-label"></div><div class="min-value"></div><div class="max-value"></div></div></div><div class="range-slider-container disabled"> <label for="matrix-d" class="label">d</label><div class="track-container"> <input class="range-slider" type="range" id="matrix-d" name="matrix-d" min="-3" max="3" value="1" step="0.1" disabled><div class="value-label"></div><div class="min-value"></div><div class="max-value"></div></div></div><div class="range-slider-container active"> <label for="matrix-e" class="label">e</label><div class="track-container"> <input class="range-slider" type="range" id="matrix-e" name="matrix-e" min="-300" max="300" value="0" step="1"><div class="value-label"></div><div class="min-value"></div><div class="max-value"></div></div></div><div class="range-slider-container active"> <label for="matrix-f" class="label">f</label><div class="track-container"> <input class="range-slider" type="range" id="matrix-f" name="matrix-f" min="-300" max="300" value="0" step="1"><div class="value-label"></div><div class="min-value"></div><div class="max-value"></div></div></div>'
+    controls:     '<div class="range-slider-container disabled"> <label for="slider-a" class="label">a</label><div class="track-container"> <input class="range-slider" type="range" id="slider-a" name="slider-a" min="-3" max="3" value="1" step="0.1" disabled><div class="value-label"></div><div class="min-value"></div><div class="max-value"></div></div></div><div class="range-slider-container disabled"> <label for="slider-b" class="label">b</label><div class="track-container"> <input class="range-slider" type="range" id="slider-b" name="slider-b" min="-3" max="3" value="0" step="0.1" disabled><div class="value-label"></div><div class="min-value"></div><div class="max-value"></div></div></div><div class="range-slider-container disabled"> <label for="slider-c" class="label">c</label><div class="track-container"> <input class="range-slider" type="range" id="slider-c" name="slider-c" min="-3" max="3" value="0" step="0.1" disabled><div class="value-label"></div><div class="min-value"></div><div class="max-value"></div></div></div><div class="range-slider-container disabled"> <label for="slider-d" class="label">d</label><div class="track-container"> <input class="range-slider" type="range" id="slider-d" name="slider-d" min="-3" max="3" value="1" step="0.1" disabled><div class="value-label"></div><div class="min-value"></div><div class="max-value"></div></div></div><div class="range-slider-container active"> <label for="slider-e" class="label">e</label><div class="track-container"> <input class="range-slider" type="range" id="slider-e" name="slider-e" min="-300" max="300" value="0" step="1"><div class="value-label"></div><div class="min-value"></div><div class="max-value"></div></div></div><div class="range-slider-container active"> <label for="slider-f" class="label">f</label><div class="track-container"> <input class="range-slider" type="range" id="slider-f" name="slider-f" min="-300" max="300" value="0" step="1"><div class="value-label"></div><div class="min-value"></div><div class="max-value"></div></div></div>',
+    initialValues: [1, 0, 0, 1, 0, 0], // Matrix values [a, b, c, d, e, f]
+    enabledSliders: ["e", "f"]
   },
   {
     title:        '<h2>Scale</h2>',
@@ -38,6 +40,21 @@ var navButtons = document.querySelectorAll('.nav-btn');
 var title = document.getElementById('page-title');
 var instructions = document.querySelector('#page-content .instructions');
 var controls = document.querySelector('#page-content .controls');
+var bottomHalf = document.getElementById('bottom-half');
+
+var matrixA = document.getElementById('matrix-a');
+var matrixB = document.getElementById('matrix-b');
+var matrixC = document.getElementById('matrix-c');
+var matrixD = document.getElementById('matrix-d');
+var matrixE = document.getElementById('matrix-e');
+var matrixF = document.getElementById('matrix-f');
+
+var equationA = document.getElementById('equation-a');
+var equationB = document.getElementById('equation-b');
+var equationC = document.getElementById('equation-c');
+var equationD = document.getElementById('equation-d');
+var equationE = document.getElementById('equation-e');
+var equationF = document.getElementById('equation-f');
 
 /* ------------------------------- Functions ------------------------------- */
 
@@ -47,6 +64,12 @@ function loadLevel(index) {
   title.innerHTML = levels[index].title;
   instructions.innerHTML = levels[index].instructions;
   controls.innerHTML = levels[index].controls;
+  // Show "bottom-half" when necessary
+  if (levels[index].controls !== '') {
+    bottomHalf.style.display = "flex";
+  } else {
+    bottomHalf.style.display = "none";
+  }
   // Update current level
   currentLevel = index;
   // Update icons
@@ -58,6 +81,8 @@ function loadLevel(index) {
   if (document.querySelector('.range-slider-container') !== null) {
     initializeAllSliders();
   }
+  // Initialize values in the matrix & equations
+  loadInitialValues(index);
 }
 
 // Draw on the canvas based on levels
@@ -89,6 +114,38 @@ function updateIcons(index) {
   });
   // Add "active" to icon based on index
   navButtons[index].classList.add("active");
+}
+
+// Initialize values in the matrix & equation
+function loadInitialValues(index) {
+  // Update values
+  if (levels[index].initialValues) {
+    var a = levels[index].initialValues[0];
+    var b = levels[index].initialValues[1];
+    var c = levels[index].initialValues[2];
+    var d = levels[index].initialValues[3];
+    var e = levels[index].initialValues[4];
+    var f = levels[index].initialValues[5];
+    matrixA.innerText = a;
+    matrixB.innerText = b;
+    matrixC.innerText = c;
+    matrixD.innerText = d;
+    matrixE.innerText = e;
+    matrixF.innerText = f;
+    equationA.innerText = (a === 0) ? "0" : ((a === 1) ? "x" : (a + "x"));
+    equationB.innerText = (b === 0) ? "0" : ((b === 1) ? "x" : (b + "x"));
+    equationC.innerText = (c === 0) ? "0" : ((c === 1) ? "y" : (c + "y"));
+    equationD.innerText = (d === 0) ? "0" : ((d === 1) ? "y" : (d + "y"));
+    equationE.innerText = e;
+    equationF.innerText = f;
+  }
+  // Highlight values that can be manipulated
+  if (levels[index].enabledSliders) {
+    levels[index].enabledSliders.forEach(function(symbol) {
+      document.getElementById('matrix-' + symbol).classList.add("highlighted");
+      document.getElementById('equation-' + symbol).classList.add("highlighted");
+    });
+  }
 }
 
 /* ---------------------------- Event listeners ---------------------------- */
