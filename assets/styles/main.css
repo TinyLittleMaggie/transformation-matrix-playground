@@ -80,13 +80,31 @@ h2 {
 }
 
 #page-content {
-  height: 375px;
+  height: 380px;
   overflow: scroll;
+  position: relative;
+}
+
+#bottom-half {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 }
 
 .controls {
   width: 50%;
-  padding-right: 15px;
+  margin-right: 15px;
+}
+
+.matrix-values {
+  min-height: 335px;
+  flex-grow: 1;
+  margin-left: 15px;
+  border: 1px dotted rgba(45, 45, 45, 1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 /* ------------------- Top Navigation ------------------ */
@@ -294,4 +312,58 @@ h2 {
 .range-slider-container.disabled .min-value,
 .range-slider-container.disabled .max-value {
   color: rgba(160, 160, 160, 1);
+}
+
+/* ------------------- Matrix values ------------------- */
+
+#bottom-half .matrix-values .highlighted {
+  color: rgba(246, 84, 133, 1);
+}
+
+#bottom-half .matrix {
+  width: 160px;
+  height: 120px;
+  padding: 10px;
+  position: relative;
+  margin-bottom: 30px;
+}
+
+#bottom-half .matrix .bracket {
+  position: absolute;
+  width: 10px;
+  height: 120px;
+  top: 0;
+  border-top: 1px solid rgba(45, 45, 45, 1);
+  border-bottom: 1px solid rgba(45, 45, 45, 1);
+}
+
+#bottom-half .matrix .bracket.left {
+  border-left: 1px solid rgba(45, 45, 45, 1);
+  left: 0;
+}
+
+#bottom-half .matrix .bracket.right {
+  border-right: 1px solid rgba(45, 45, 45, 1);
+  right: 0;
+}
+
+#bottom-half .matrix .value-container {
+  height: 100px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+#bottom-half .matrix .value {
+  text-align: center;
+  line-height: 33.33px;
+  font-style: italic;
+}
+
+#bottom-half .equations {
+  font-style: italic;
+}
+
+#bottom-half .equations .row-2,
+#bottom-half .equations .row-4 {
+  padding-left: 16px;
 }

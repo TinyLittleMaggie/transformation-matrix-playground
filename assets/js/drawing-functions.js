@@ -65,8 +65,8 @@ function introLevel() {
 
 function translateLevel() {
   // Select the range slider inputs
-  var e = document.getElementById('matrix-e');
-  var f = document.getElementById('matrix-f');
+  var e = document.getElementById('slider-e');
+  var f = document.getElementById('slider-f');
   // Define the "translate" function and execute it once
   function translate() {
     // Clear the canvas & draw the original image

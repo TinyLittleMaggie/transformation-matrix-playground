@@ -44,11 +44,35 @@
           <div class="nav-btn" id="btn-shear" data-level="3"></div>
           <div class="nav-btn" id="btn-rotate" data-level="4"></div>
         </div>
-        <div id="page-title" class="mb-4"></div>
+        <div id="page-title" class="mb-3"></div>
         <div id="page-content">
           <div class="instructions"></div>
-          <div class="controls"></div>
-          <div class="matrix-values"></div>
+          <div id="bottom-half">
+            <div class="controls"></div>
+            <div class="matrix-values">
+              <div class="matrix">
+                <div class="bracket left"></div>
+                <div class="value-container">
+                  <p id="matrix-a" class="value">1</p>
+                  <p id="matrix-c" class="value">0</p>
+                  <p id="matrix-e" class="value highlighted">295.5</p>
+                  <p id="matrix-b" class="value">0</p>
+                  <p id="matrix-d" class="value">1</p>
+                  <p id="matrix-f" class="value highlighted">40.3</p>
+                  <p id="matrix-x" class="value">0</p>
+                  <p id="matrix-y" class="value">0</p>
+                  <p id="matrix-z" class="value">1</p>
+                </div>
+                <div class="bracket right"></div>
+              </div>
+              <div class="equations">
+                <p>x’  =  ax  +  cy  +  e</p>
+                <p class="row-2">=  x  +  0  +  <span class="highlighted">295.5</span></p>
+                <p>y’  =  bx  +  dy  +  f</p>
+                <p class="row-4">=  0  +  y  +  <span class="highlighted">40.3</span></p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <div class="right-panel">
