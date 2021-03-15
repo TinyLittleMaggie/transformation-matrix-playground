@@ -86,6 +86,8 @@ function loadLevel(index) {
   }
   // Initialize values in the matrix & equations
   loadInitialValues(index);
+  // Set highlighted (colored) numbers
+  setHighlights(index);
 }
 
 // Draw on the canvas based on levels
@@ -142,6 +144,15 @@ function loadInitialValues(index) {
     equationE.innerText = e;
     equationF.innerText = f;
   }
+}
+
+// Set highlighted numbers in the matrix & equations
+function setHighlights(index) {
+  // Remove all existing highlights
+  var highlights = document.querySelectorAll(".highlighted");
+  highlights.forEach(function(element) {
+    element.classList.remove("highlighted");
+  });
   // Highlight values that can be manipulated
   if (levels[index].enabledSliders) {
     levels[index].enabledSliders.forEach(function(symbol) {
