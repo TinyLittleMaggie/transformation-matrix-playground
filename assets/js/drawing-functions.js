@@ -55,15 +55,15 @@ function drawTransformedImg(a, b, c, d, e, f) {
 /* ======= Function for updating the values in the matrix & equations ======= */
 
 // Update matrix values in real-time
-function updateMatrixValues(symbol) {
+function updateMatrixValues(symbol, variable) {
 
   // Get the current value of an input
-  var newValue = document.getElementById('slider-' + symbol).value;
+  var newValue = Number(document.getElementById('slider-' + symbol).value);
 
   // Update the values in the matrix & the quations
   // - Note: function formatNumber() is defined in levels.js
   document.getElementById('matrix-' + symbol).innerText = newValue;
-  document.getElementById('equation-' + symbol).innerText = formatNumber(newValue, "");
+  document.getElementById('equation-' + symbol).innerText = formatNumber(newValue, variable);
 
 }
 
@@ -96,19 +96,36 @@ function translateLevel() {
   // Update the drawings whenever the e & f inputs change
   e.addEventListener('input', function() {
     translate();
-    updateMatrixValues("e");
+    updateMatrixValues("e", "");
   });
   f.addEventListener('input', function() {
     translate();
-    updateMatrixValues("f");
+    updateMatrixValues("f", "");
   });
 }
 
 function scaleLevel() {
-  // Draw the original image
-  drawOriginalImg();
-  // Draw the transformed image
-  drawTransformedImg(2, 0, 0, 2, 0, 0);
+  // Select the range slider inputs
+  var a = document.getElementById('slider-a');
+  var d = document.getElementById('slider-d');
+  // Define the "scale" function and execute it once
+  function scale() {
+    // Clear the canvas & draw the original image
+    resetCanvas();
+    drawOriginalImg();
+    // Draw the transformed image
+    drawTransformedImg(a.value, 0, 0, d.value, 0, 0);
+  }
+  scale();
+  // Update the drawings whenever the a & d inputs change
+  a.addEventListener('input', function() {
+    scale();
+    updateMatrixValues("a", "x");
+  });
+  d.addEventListener('input', function() {
+    scale();
+    updateMatrixValues("d", "y");
+  });
 }
 
 function shearLevel() {

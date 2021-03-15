@@ -79,6 +79,15 @@ h2 {
   padding-left: 15px;
 }
 
+#page-title {
+  display: inline-block;
+}
+
+#definition {
+  display: inline-block;
+  font-style: italic;
+}
+
 #page-content {
   height: 380px;
   overflow: scroll;
@@ -94,10 +103,13 @@ h2 {
 .controls {
   width: 50%;
   margin-right: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .matrix-values {
-  min-height: 335px;
+  min-height: 370px;
   flex-grow: 1;
   margin-left: 15px;
   border: 1px dotted rgba(45, 45, 45, 1);
@@ -222,7 +234,7 @@ h2 {
 .range-slider-container .track-container {
   flex-grow: 1;
   position: relative;
-  padding: 16px 0;
+  padding: 14px 0;
 }
 
 .range-slider-container .range-slider {
@@ -325,7 +337,7 @@ h2 {
   height: 120px;
   padding: 10px;
   position: relative;
-  margin-bottom: 30px;
+  margin-bottom: 40px;
 }
 
 #bottom-half .matrix .bracket {
