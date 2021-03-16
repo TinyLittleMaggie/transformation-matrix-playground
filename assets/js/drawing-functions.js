@@ -105,9 +105,13 @@ function translateLevel() {
 }
 
 function scaleLevel() {
+
   // Select the range slider inputs
   var a = document.getElementById('slider-a');
   var d = document.getElementById('slider-d');
+  // Select the presets dropdown
+  var presets = document.getElementById('presets');
+
   // Define the "scale" function and execute it once
   function scale() {
     // Clear the canvas & draw the original image
@@ -117,6 +121,7 @@ function scaleLevel() {
     drawTransformedImg(a.value, 0, 0, d.value, 0, 0);
   }
   scale();
+
   // Update the drawings whenever the a & d inputs change
   a.addEventListener('input', function() {
     scale();
@@ -126,6 +131,30 @@ function scaleLevel() {
     scale();
     updateMatrixValues("d", "y");
   });
+
+  // Automatically adjust the a & d inputs when a preset is selected
+  presets.addEventListener('input', function() {
+    var preset = presets.value;
+    if (preset === "origin") {
+      setSliderValue("a", "-1");
+      setSliderValue("d", "-1");
+    } else if (preset === "x-axis") {
+      setSliderValue("a", "1");
+      setSliderValue("d", "-1");
+    } else if (preset === "y-axis") {
+      setSliderValue("a", "-1");
+      setSliderValue("d", "1");
+    }
+  });
+
+  // Remove preset selection when the a & d inputs are clicked
+  a.addEventListener('mousedown', function() {
+    presets.value = "";
+  });
+  d.addEventListener('mousedown', function() {
+    presets.value = "";
+  });
+
 }
 
 function shearLevel() {
