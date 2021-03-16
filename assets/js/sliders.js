@@ -67,7 +67,7 @@ function initializeSlider(sliderContainer) {
 
   /* ---------------------------- Event listeners ---------------------------- */
 
-  sliderInput.addEventListener("input", function() {
+  sliderInput.addEventListener('input', function() {
     setValueLabel();
     setTrackColors();
   });
@@ -81,7 +81,6 @@ function initializeSlider(sliderContainer) {
 }
 
 // Initialize all sliders on the page
-
 function initializeAllSliders() {
 
   var allSliders = document.querySelectorAll('.range-slider-container');
@@ -90,4 +89,15 @@ function initializeAllSliders() {
     initializeSlider(slider);
   });
 
+}
+
+// Programmatically set the value of a slider
+// e.g. setSliderValue("a", "2") => move slider a to 2
+function setSliderValue(symbol, value) {
+  // Select the slider
+  var slider = document.getElementById('slider-' + symbol);
+  // Update the value
+  slider.value = value;
+  // Simulate an input
+  slider.dispatchEvent(new Event('input'));
 }
