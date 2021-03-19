@@ -67,6 +67,40 @@ function updateMatrixValues(symbol, variable) {
 
 }
 
+/* ======================== Enable / disable sliders ======================== */
+
+// Enable a specific slider
+function enableSlider(symbol) {
+  var s = document.getElementById('slider-' + symbol);
+  var c = s.closest(".range-slider-container");
+  // Enable the input
+  s.removeAttribute("disabled");
+  // Update classes of the container to change styling
+  c.classList.add("active");
+  c.classList.remove("disabled");
+  // Initialize this slider again (mainly for the purpose of re-coloring the track)
+  initializeSlider(c);
+  // TODO:
+  // 1. use object-oriented programming, and set methods for sliders
+  // 2. and run s.setTrackColors() instead of running the entire initializeSlider() function.
+}
+
+// Disable a specific slider
+function disableSlider(symbol) {
+  var s = document.getElementById('slider-' + symbol);
+  var c = s.closest(".range-slider-container");
+  // Disable the input
+  s.setAttribute("disabled", "");
+  // Update classes of the container to change styling
+  c.classList.remove("active");
+  c.classList.add("disabled");
+  // Initialize this slider again (mainly for the purpose of re-coloring the track)
+  initializeSlider(c);
+  // TODO:
+  // 1. use object-oriented programming, and set methods for sliders
+  // 2. and run s.setTrackColors() instead of running the entire initializeSlider() function.
+}
+
 /* ==================== Drawing functions for each level ==================== */
 
 /* Below are functions that describe how things should be drawn on the canvas
@@ -158,10 +192,53 @@ function scaleLevel() {
 }
 
 function shearLevel() {
-  // Draw the original image
-  drawOriginalImg();
-  // Draw the transformed image
-  drawTransformedImg(1, 0, 0.5, 1, 0, 0);
+  // Select the range slider inputs
+  var b = document.getElementById('slider-b');
+  var c = document.getElementById('slider-c');
+  // Select the presets dropdown
+  var presets = document.getElementById('presets');
+
+  // Enable slider c by default
+  enableSlider("c");
+
+  // Define the "shear" function and execute it once
+  function shear() {
+    // Clear the canvas & draw the original image
+    resetCanvas();
+    drawOriginalImg();
+    // Draw the transformed image
+    drawTransformedImg(1, b.value, c.value, 1, 0, 0);
+  }
+  shear();
+
+  // Update the drawings whenever the a & d inputs change
+  b.addEventListener('input', function() {
+    shear();
+    updateMatrixValues("b", "x");
+  });
+  c.addEventListener('input', function() {
+    shear();
+    updateMatrixValues("c", "y");
+  });
+
+  // Enable / disable the inputs when a preset is selected
+  presets.addEventListener('input', function() {
+    // Set b & c to 0, regardless of selection
+    setSliderValue("b", "0");
+    setSliderValue("c", "0");
+    var preset = presets.value;
+    if (preset === "both") {
+      enableSlider("b");
+      enableSlider("c");
+    } else if (preset === "x-axis") {
+      disableSlider("b");
+      enableSlider("c");
+    } else if (preset === "y-axis") {
+      enableSlider("b");
+      disableSlider("c");
+    }
+  });
+
 }
 
 function rotateLevel() {
