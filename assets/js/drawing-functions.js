@@ -52,6 +52,10 @@ function drawTransformedImg(a, b, c, d, e, f) {
   ctx.restore();
 }
 
+function toRadians (angle) {
+  return angle * (Math.PI / 180);
+}
+
 /* ======= Function for updating the values in the matrix & equations ======= */
 
 // Update matrix values in real-time
@@ -274,8 +278,42 @@ function shearLevel() {
 }
 
 function rotateLevel() {
-  // Draw the original image
-  drawOriginalImg();
-  // Draw the transformed image
-  drawTransformedImg(-0.59, -0.81, 0.81, -0.59, 0, 0);
+
+  // Select the range slider inputs
+  var a = document.getElementById('slider-a');
+  var b = document.getElementById('slider-b');
+  var c = document.getElementById('slider-c');
+  var d = document.getElementById('slider-d');
+
+  // Select the master slider
+  var master = document.getElementById('slider-theta');
+
+  // Set which numbers are highlighted in the matrix & equations
+  setHighlights(["a", "b", "c", "d"]);
+
+  // Define the "rotate" function and execute it once
+  function rotate() {
+    // Clear the canvas & draw the original image
+    resetCanvas();
+    drawOriginalImg();
+    // Set values of a, b, c, d sliders based on master slider
+    var angle = toRadians(Number(master.value));
+    setSliderValue("a", Math.cos(angle));
+    setSliderValue("b", -Math.sin(angle));
+    setSliderValue("c", Math.sin(angle));
+    setSliderValue("d", Math.cos(angle));
+    // Draw the transformed image
+    drawTransformedImg(a.value, b.value, c.value, d.value, 0, 0);
+  }
+  rotate();
+
+  // Update the drawings whenever the master slider changes
+  master.addEventListener('input', function() {
+    rotate();
+    updateMatrixValues("a", "x");
+    updateMatrixValues("b", "x");
+    updateMatrixValues("c", "y");
+    updateMatrixValues("d", "y");
+  });
+
 }
