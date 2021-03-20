@@ -220,6 +220,15 @@ select:focus {
 
 /* ------------------- Range sliders ------------------- */
 
+/* Slider types explained:
+   .active          -  value can be changed by user input
+   .disabled        -  has a fixed value
+   .master          -  value can be changed by user input,
+                       and can affect the values of other sliders
+   .active.passive  -  value can be controlled by a master slider,
+                       but can't be changed by user input
+*/
+
 .range-slider-container {
   display: flex;
   align-items: center;
@@ -293,11 +302,22 @@ select:focus {
   cursor: grab;
 }
 
+.range-slider-container.active.passive .range-slider::-webkit-slider-thumb {
+  background: rgba(246, 84, 133, 1);
+  cursor: not-allowed;
+}
+.range-slider-container.active.passive .range-slider::-moz-range-thumb {
+  background: rgba(246, 84, 133, 1);
+  cursor: not-allowed;
+}
+
 .range-slider-container.disabled .range-slider::-webkit-slider-thumb {
   background: rgba(160, 160, 160, 1);
+  cursor: not-allowed;
 }
 .range-slider-container.disabled .range-slider::-moz-range-thumb {
   background: rgba(160, 160, 160, 1);
+  cursor: not-allowed;
 }
 
 .range-slider-container .value-label {

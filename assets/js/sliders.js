@@ -40,11 +40,20 @@ function initializeSlider(sliderContainer) {
     }
   }
 
+  // If it is an input that has a unit, return the unit
+  function getUnit() {
+    if (sliderInput.dataset.unit === "degree") {
+      return "°";
+    } else {
+      return "";
+    }
+  }
+
   // Display min & max values based on <input> attributes
   function setRangeLabels() {
     var decimals = getDecimalPlaces(step);
-    minValue.innerText = Number(sliderInput.min).toFixed(decimals);
-    maxValue.innerText = Number(sliderInput.max).toFixed(decimals);
+    minValue.innerText = Number(sliderInput.min).toFixed(decimals) + getUnit();
+    maxValue.innerText = Number(sliderInput.max).toFixed(decimals) + getUnit();
   }
 
   // Display the slider value right above the thumb
@@ -52,7 +61,7 @@ function initializeSlider(sliderContainer) {
     // Get decimal places
     var decimals = getDecimalPlaces(step);
     // Display the value
-    valueLabel.innerText = Number(sliderInput.value).toFixed(decimals);
+    valueLabel.innerText = Number(sliderInput.value).toFixed(decimals) + getUnit();
     // Adjust the position
     valueLabel.style.left = "calc(" + getPercentage() + "% - 17px)";
   }
