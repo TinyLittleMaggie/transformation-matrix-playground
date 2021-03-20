@@ -13,8 +13,7 @@ var levels = [
     title:        'Translate',
     definition:   'to move a shape from one place to another',
     controls:     '<div class="range-slider-container disabled"> <label for="slider-a" class="label">a</label><div class="track-container"> <input class="range-slider" type="range" id="slider-a" name="slider-a" min="-3" max="3" value="1" step="0.1" disabled><div class="value-label"></div><div class="min-value"></div><div class="max-value"></div></div></div><div class="range-slider-container disabled"> <label for="slider-b" class="label">b</label><div class="track-container"> <input class="range-slider" type="range" id="slider-b" name="slider-b" min="-3" max="3" value="0" step="0.1" disabled><div class="value-label"></div><div class="min-value"></div><div class="max-value"></div></div></div><div class="range-slider-container disabled"> <label for="slider-c" class="label">c</label><div class="track-container"> <input class="range-slider" type="range" id="slider-c" name="slider-c" min="-3" max="3" value="0" step="0.1" disabled><div class="value-label"></div><div class="min-value"></div><div class="max-value"></div></div></div><div class="range-slider-container disabled"> <label for="slider-d" class="label">d</label><div class="track-container"> <input class="range-slider" type="range" id="slider-d" name="slider-d" min="-3" max="3" value="1" step="0.1" disabled><div class="value-label"></div><div class="min-value"></div><div class="max-value"></div></div></div><div class="range-slider-container active"> <label for="slider-e" class="label">e</label><div class="track-container"> <input class="range-slider" type="range" id="slider-e" name="slider-e" min="-350" max="350" value="0" step="1"><div class="value-label"></div><div class="min-value"></div><div class="max-value"></div></div></div><div class="range-slider-container active"> <label for="slider-f" class="label">f</label><div class="track-container"> <input class="range-slider" type="range" id="slider-f" name="slider-f" min="-350" max="350" value="0" step="1"><div class="value-label"></div><div class="min-value"></div><div class="max-value"></div></div></div>',
-    initialValues: [1, 0, 0, 1, 0, 0], // Matrix values [a, b, c, d, e, f]
-    enabledSliders: ["e", "f"]
+    initialValues: [1, 0, 0, 1, 0, 0] // Matrix values [a, b, c, d, e, f]
   },
   {
     title:        'Scale',
@@ -88,8 +87,6 @@ function loadLevel(index) {
   }
   // Initialize values in the matrix & equations
   loadInitialValues(index);
-  // Set highlighted (colored) numbers
-  setHighlights(index);
 }
 
 // Draw on the canvas based on levels
@@ -145,22 +142,6 @@ function loadInitialValues(index) {
     equationD.innerText = formatNumber(d, "y");
     equationE.innerText = e;
     equationF.innerText = f;
-  }
-}
-
-// Set highlighted numbers in the matrix & equations
-function setHighlights(index) {
-  // Remove all existing highlights
-  var highlights = document.querySelectorAll(".highlighted");
-  highlights.forEach(function(element) {
-    element.classList.remove("highlighted");
-  });
-  // Highlight values that can be manipulated
-  if (levels[index].enabledSliders) {
-    levels[index].enabledSliders.forEach(function(symbol) {
-      document.getElementById('matrix-' + symbol).classList.add("highlighted");
-      document.getElementById('equation-' + symbol).classList.add("highlighted");
-    });
   }
 }
 

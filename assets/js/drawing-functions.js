@@ -67,6 +67,20 @@ function updateMatrixValues(symbol, variable) {
 
 }
 
+// Set highlighted numbers in the matrix & equations
+function setHighlights(array) {
+  // Remove all existing highlights
+  var highlights = document.querySelectorAll(".highlighted");
+  highlights.forEach(function(element) {
+    element.classList.remove("highlighted");
+  });
+  // Highlight values that can be manipulated
+  array.forEach(function(symbol) {
+    document.getElementById('matrix-' + symbol).classList.add("highlighted");
+    document.getElementById('equation-' + symbol).classList.add("highlighted");
+  });
+}
+
 /* ======================== Enable / disable sliders ======================== */
 
 // Enable a specific slider
@@ -104,6 +118,7 @@ function disableSlider(symbol) {
 /* ==================== Drawing functions for each level ==================== */
 
 /* Below are functions that describe how things should be drawn on the canvas
+   and how the numbers in the matrix & in the equations should change
    based on the inputs from the left panel */
 
 function introLevel() {
@@ -115,9 +130,14 @@ function introLevel() {
 }
 
 function translateLevel() {
+
   // Select the range slider inputs
   var e = document.getElementById('slider-e');
   var f = document.getElementById('slider-f');
+
+  // Set which numbers are highlighted in the matrix & equations
+  setHighlights(["e", "f"]);
+
   // Define the "translate" function and execute it once
   function translate() {
     // Clear the canvas & draw the original image
@@ -127,6 +147,7 @@ function translateLevel() {
     drawTransformedImg(1, 0, 0, 1, e.value, f.value);
   }
   translate();
+
   // Update the drawings whenever the e & f inputs change
   e.addEventListener('input', function() {
     translate();
@@ -136,6 +157,7 @@ function translateLevel() {
     translate();
     updateMatrixValues("f", "");
   });
+
 }
 
 function scaleLevel() {
@@ -145,6 +167,9 @@ function scaleLevel() {
   var d = document.getElementById('slider-d');
   // Select the presets dropdown
   var presets = document.getElementById('presets');
+
+  // Set which numbers are highlighted in the matrix & equations
+  setHighlights(["a", "d"]);
 
   // Define the "scale" function and execute it once
   function scale() {
@@ -192,6 +217,7 @@ function scaleLevel() {
 }
 
 function shearLevel() {
+
   // Select the range slider inputs
   var b = document.getElementById('slider-b');
   var c = document.getElementById('slider-c');
@@ -200,6 +226,9 @@ function shearLevel() {
 
   // Enable slider c by default
   enableSlider("c");
+
+  // Set which numbers are highlighted in the matrix & equations
+  setHighlights(["c"]);
 
   // Define the "shear" function and execute it once
   function shear() {
@@ -230,12 +259,15 @@ function shearLevel() {
     if (preset === "both") {
       enableSlider("b");
       enableSlider("c");
+      setHighlights(["b", "c"]);
     } else if (preset === "x-axis") {
       disableSlider("b");
       enableSlider("c");
+      setHighlights(["c"]);
     } else if (preset === "y-axis") {
       enableSlider("b");
       disableSlider("c");
+      setHighlights(["b"]);
     }
   });
 
