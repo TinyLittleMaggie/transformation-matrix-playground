@@ -62,7 +62,8 @@ function toRadians (angle) {
 function updateMatrixValues(symbol, variable) {
 
   // Get the current value of an input
-  var newValue = Number(document.getElementById('slider-' + symbol).value);
+  var newValue = Number(document.getElementById('slider-' + symbol).value).toFixed(2);
+  // TODO: instead of toFixed(2), use toFixed(slider.decimals) after OOP refactoring..
 
   // Update the values in the matrix & the quations
   // - Note: function formatNumber() is defined in levels.js
