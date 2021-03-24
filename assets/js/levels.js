@@ -137,34 +137,12 @@ function loadInitialValues(index) {
     matrixD.innerText = d;
     matrixE.innerText = e;
     matrixF.innerText = f;
-    equationA.innerText = formatNumber(a, "x");
-    equationB.innerText = formatNumber(b, "x");
-    equationC.innerText = formatNumber(c, "y");
-    equationD.innerText = formatNumber(d, "y");
+    equationA.innerText = a;
+    equationB.innerText = b;
+    equationC.innerText = c;
+    equationD.innerText = d;
     equationE.innerText = e;
     equationF.innerText = f;
-  }
-}
-
-// Small helper function for formatting numbers in the equations
-// A) Example: formatNumber(a, "x");
-//    - returns "0" when a = 0
-//    - returns "x" when a = 1
-//    - returns "(-8)x" when a = -8
-//    - returns "8x" when a = 8
-//    - returns "-x" when a = -1
-// B) Set variable as empty string "" when there's no need to append a variable to it
-function formatNumber(number, variable) {
-  if (number === 0) {
-    return "0";
-  } else if (number === 1) {
-    return variable;
-  } else if (number === -1) {
-    return "(-" + variable + ")";
-  } else if (number < 0) {
-    return "(" + number + ")" + variable;
-  } else {
-    return (number + variable);
   }
 }
 

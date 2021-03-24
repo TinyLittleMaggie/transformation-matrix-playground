@@ -66,9 +66,8 @@ function updateMatrixValues(symbol, variable) {
   // TODO: instead of toFixed(2), use toFixed(slider.decimals) after OOP refactoring..
 
   // Update the values in the matrix & the quations
-  // - Note: function formatNumber() is defined in levels.js
   document.getElementById('matrix-' + symbol).innerText = newValue;
-  document.getElementById('equation-' + symbol).innerText = formatNumber(newValue, variable);
+  document.getElementById('equation-' + symbol).innerText = newValue;
 
 }
 
