@@ -360,16 +360,13 @@ select:focus {
 
 /* ------------------- Matrix values ------------------- */
 
-#bottom-half .matrix-values .highlighted {
-  color: rgba(246, 84, 133, 1);
-}
-
 #bottom-half .matrix {
   width: 160px;
   height: 120px;
   padding: 10px;
   position: relative;
   margin-bottom: 40px;
+  font-size: 14px;
 }
 
 #bottom-half .matrix .bracket {
@@ -403,12 +400,28 @@ select:focus {
   font-style: italic;
 }
 
+#bottom-half .matrix .highlighted {
+  color: rgba(246, 84, 133, 1);
+}
+
 #bottom-half .equations {
   font-style: italic;
   min-width: 135px;
+  font-size: 14px;
 }
 
 #bottom-half .equations .row-2,
 #bottom-half .equations .row-4 {
   padding-left: 16px;
+}
+
+#bottom-half .equations .highlighted {
+  background-color: rgba(246, 84, 133, 0.1);
+  color: rgba(246, 84, 133, 1);
+  border-radius: 4px;
+  padding: 0 3px;
+  margin-right: 2px;
+  display: inline-block;
+  min-width: 48px;
+  text-align: center;
 }
