@@ -22,7 +22,7 @@ function Slider(min, max, step, type, defaultValue, symbol) {
     this.container.innerHTML = `<label class="label">${this.symbol}</label>
                                 <div class="track-container">
                                   <input class="range-slider" type="range" id="slider-${this.symbol}"
-                                         min="${this.min}" max="${this.max}" value="${this.defaultValue}" step="${this.step}">
+                                         min="${this.min}" max="${this.max}" value="${this.value}" step="${this.step}">
                                   <div class="value-label">${this.value}</div>
                                   <div class="min-value">${this.min}</div>
                                   <div class="max-value">${this.max}</div>
