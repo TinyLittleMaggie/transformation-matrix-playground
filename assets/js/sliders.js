@@ -1,3 +1,88 @@
+// Slider constructor
+function Slider(min, max, step, type, defaultValue, symbol) {
+
+  // ------------------ Attributes ------------------ //
+  this.min = min;
+  this.max = max;
+  this.step = step;
+  this.type = type;
+  this.value = defaultValue;
+  this.symbol = symbol;
+
+  // Create an empty container
+  this.container = document.createElement("div");
+
+  // ------------------- Methods -------------------- //
+
+  // Render a slider on the page
+  this.render = () => {
+
+    const controls = document.querySelector('#page-content .controls');
+    this.container.classList.add("range-slider-container");
+    this.container.innerHTML = `<label class="label">${this.symbol}</label>
+                                <div class="track-container">
+                                  <input class="range-slider" type="range" id="slider-${this.symbol}"
+                                         min="${this.min}" max="${this.max}" value="${this.defaultValue}" step="${this.step}">
+                                  <div class="value-label">${this.value}</div>
+                                  <div class="min-value">${this.min}</div>
+                                  <div class="max-value">${this.max}</div>
+                                </div>`;
+    controls.appendChild(this.container);
+
+    // Initialize the slider
+    this.setSliderType(this.type);
+    this.handleInput();
+
+  };
+
+  // Apply styling and enable/disable the input based on slider type
+  this.setSliderType = (type) => {
+
+    const classes = this.container.classList;
+    classes.remove("master", "active", "disabled");
+    classes.add(type);
+
+    const input = this.container.querySelector('.range-slider');
+    if (type === "disabled") {
+      input.setAttribute("disabled", "");
+    } else {
+      input.removeAttribute("disabled");
+    }
+
+  };
+
+  // Add event listener to handle input
+  this.handleInput = () => {
+    const input = this.container.querySelector('.range-slider');
+    input.addEventListener('input', () => {
+      this.value = input.value;
+    });
+  };
+
+  // Calculate where the slider "thumb" should be (in percentage number)
+  this.getPercentage = () => {
+    return (this.value - this.min) / (this.max - this.min) * 100;
+  };
+
+  // Choose the theme color based on slider type
+  this.getThemeColor = () => {
+    switch (this.type) {
+      case "master":
+        return "45, 45, 45";
+      case "active":
+        return "246, 84, 133";
+      case "disabled":
+        return "160, 160, 160";
+    }
+  };
+
+}
+
+/* =========================================================================== */
+// Below this: non-OOP code to be replaced ...
+/* =========================================================================== */
+
+
 // Initialize one slider
 
 function initializeSlider(sliderContainer) {
