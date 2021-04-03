@@ -286,7 +286,7 @@ function rotateLevel() {
   var d = document.getElementById('slider-d');
 
   // Select the master slider
-  var master = document.getElementById('slider-theta');
+  var master = document.getElementById('slider-θ');
 
   // Set which numbers are highlighted in the matrix & equations
   setHighlights(["a", "b", "c", "d"]);

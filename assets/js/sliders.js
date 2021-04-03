@@ -283,14 +283,13 @@ function setSliderValue(symbol, value) {
   slider.dispatchEvent(new Event('input'));
 }
 
-// TODO: replace the below function; use OOP code to create sliders on the page
 // Initialize all sliders on the page
-function initializeAllSliders() {
+// function initializeAllSliders() {
 
-  var allSliders = document.querySelectorAll('.range-slider-container');
+//   var allSliders = document.querySelectorAll('.range-slider-container');
 
-  allSliders.forEach(function(slider) {
-    initializeSlider(slider);
-  });
+//   allSliders.forEach(function(slider) {
+//     initializeSlider(slider);
+//   });
 
-}
+// }

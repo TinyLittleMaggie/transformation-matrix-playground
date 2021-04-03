@@ -12,27 +12,64 @@ var levels = [
   {
     title:        'Translate',
     definition:   'to move a shape from one place to another',
-    controls:     '<div class="range-slider-container disabled"> <label for="slider-a" class="label">a</label><div class="track-container"> <input class="range-slider" type="range" id="slider-a" name="slider-a" min="-3" max="3" value="1" step="0.1" disabled><div class="value-label"></div><div class="min-value"></div><div class="max-value"></div></div></div><div class="range-slider-container disabled"> <label for="slider-b" class="label">b</label><div class="track-container"> <input class="range-slider" type="range" id="slider-b" name="slider-b" min="-3" max="3" value="0" step="0.1" disabled><div class="value-label"></div><div class="min-value"></div><div class="max-value"></div></div></div><div class="range-slider-container disabled"> <label for="slider-c" class="label">c</label><div class="track-container"> <input class="range-slider" type="range" id="slider-c" name="slider-c" min="-3" max="3" value="0" step="0.1" disabled><div class="value-label"></div><div class="min-value"></div><div class="max-value"></div></div></div><div class="range-slider-container disabled"> <label for="slider-d" class="label">d</label><div class="track-container"> <input class="range-slider" type="range" id="slider-d" name="slider-d" min="-3" max="3" value="1" step="0.1" disabled><div class="value-label"></div><div class="min-value"></div><div class="max-value"></div></div></div><div class="range-slider-container active"> <label for="slider-e" class="label">e</label><div class="track-container"> <input class="range-slider" type="range" id="slider-e" name="slider-e" min="-350" max="350" value="0" step="1"><div class="value-label"></div><div class="min-value"></div><div class="max-value"></div></div></div><div class="range-slider-container active"> <label for="slider-f" class="label">f</label><div class="track-container"> <input class="range-slider" type="range" id="slider-f" name="slider-f" min="-350" max="350" value="0" step="1"><div class="value-label"></div><div class="min-value"></div><div class="max-value"></div></div></div>',
+    controls:     '',
+    sliders: [
+      //  Slider( min,   max,  value,  step,  type,        symbol,  unit   )
+      new Slider( -3,    3,    1,      0.1,   "disabled",  "a",     "none" ),
+      new Slider( -3,    3,    0,      0.1,   "disabled",  "b",     "none" ),
+      new Slider( -3,    3,    0,      0.1,   "disabled",  "c",     "none" ),
+      new Slider( -3,    3,    1,      0.1,   "disabled",  "d",     "none" ),
+      new Slider( -350,  350,  0,      1,     "active",    "e",     "none" ),
+      new Slider( -350,  350,  0,      1,     "active",    "f",     "none" )
+    ],
     initialValues: [1, 0, 0, 1, 0, 0] // Matrix values [a, b, c, d, e, f]
   },
   {
     title:        'Scale',
     definition:   'to make a shape bigger or smaller',
-    controls:     '<select id="presets" class="mb-2"><option value="">Choose a preset...</option><option value="origin">Reflect about origin</option><option value="x-axis">Reflect about <i>x</i>-axis</option><option value="y-axis">Reflect about <i>y</i>-axis</option></select><div class="range-slider-container active"><label for="slider-a" class="label">a</label> <div class="track-container"> <input class="range-slider" type="range" id="slider-a" name="slider-a" min="-3" max="3" value="1" step="0.1"> <div class="value-label"></div><div class="min-value"></div><div class="max-value"></div></div></div><div class="range-slider-container disabled"> <label for="slider-b" class="label">b</label> <div class="track-container"> <input class="range-slider" type="range" id="slider-b" name="slider-b" min="-3" max="3" value="0" step="0.1" disabled> <div class="value-label"></div><div class="min-value"></div><div class="max-value"></div></div></div><div class="range-slider-container disabled"> <label for="slider-c" class="label">c</label> <div class="track-container"> <input class="range-slider" type="range" id="slider-c" name="slider-c" min="-3" max="3" value="0" step="0.1" disabled> <div class="value-label"></div><div class="min-value"></div><div class="max-value"></div></div></div><div class="range-slider-container active"> <label for="slider-d" class="label">d</label> <div class="track-container"> <input class="range-slider" type="range" id="slider-d" name="slider-d" min="-3" max="3" value="1" step="0.1"> <div class="value-label"></div><div class="min-value"></div><div class="max-value"></div></div></div><div class="range-slider-container disabled"> <label for="slider-e" class="label">e</label> <div class="track-container"> <input class="range-slider" type="range" id="slider-e" name="slider-e" min="-350" max="350" value="0" step="1" disabled> <div class="value-label"></div><div class="min-value"></div><div class="max-value"></div></div></div><div class="range-slider-container disabled"> <label for="slider-f" class="label">f</label> <div class="track-container"> <input class="range-slider" type="range" id="slider-f" name="slider-f" min="-350" max="350" value="0" step="1" disabled> <div class="value-label"></div><div class="min-value"></div><div class="max-value"></div></div></div>',
+    controls:     '<select id="presets" class="mb-2"><option value="">Choose a preset...</option><option value="origin">Reflect about origin</option><option value="x-axis">Reflect about <i>x</i>-axis</option><option value="y-axis">Reflect about <i>y</i>-axis</option></select>',
+    sliders: [
+      //  Slider( min,   max,  value,  step,  type,        symbol,  unit   )
+      new Slider( -3,    3,    1,      0.1,   "active",    "a",     "none" ),
+      new Slider( -3,    3,    0,      0.1,   "disabled",  "b",     "none" ),
+      new Slider( -3,    3,    0,      0.1,   "disabled",  "c",     "none" ),
+      new Slider( -3,    3,    1,      0.1,   "active",    "d",     "none" ),
+      new Slider( -350,  350,  0,      1,     "disabled",  "e",     "none" ),
+      new Slider( -350,  350,  0,      1,     "disabled",  "f",     "none" )
+    ],
     initialValues: [1, 0, 0, 1, 0, 0],
     enabledSliders: ["a", "d"]
   },
   {
     title:        'Shear',
     definition:   'to distort a shape along the axes',
-    controls:     '<select id="presets" class="mb-2"><option value="x-axis">Shear along the <i>x</i>-axis</option><option value="y-axis">Shear along the <i>y</i>-axis</option><option value="both">Shear along both <i>x</i> and <i>y</i> axes</option> </select><div class="range-slider-container disabled"> <label for="slider-a" class="label">a</label><div class="track-container"> <input class="range-slider" type="range" id="slider-a" name="slider-a" min="-3" max="3" value="1" step="0.1" disabled><div class="value-label"></div><div class="min-value"></div><div class="max-value"></div></div></div><div class="range-slider-container disabled"> <label for="slider-b" class="label">b</label><div class="track-container"> <input class="range-slider" type="range" id="slider-b" name="slider-b" min="-3" max="3" value="0" step="0.1" disabled><div class="value-label"></div><div class="min-value"></div><div class="max-value"></div></div></div><div class="range-slider-container disabled"> <label for="slider-c" class="label">c</label><div class="track-container"> <input class="range-slider" type="range" id="slider-c" name="slider-c" min="-3" max="3" value="0" step="0.1" disabled><div class="value-label"></div><div class="min-value"></div><div class="max-value"></div></div></div><div class="range-slider-container disabled"> <label for="slider-d" class="label">d</label><div class="track-container"> <input class="range-slider" type="range" id="slider-d" name="slider-d" min="-3" max="3" value="1" step="0.1" disabled><div class="value-label"></div><div class="min-value"></div><div class="max-value"></div></div></div><div class="range-slider-container disabled"> <label for="slider-e" class="label">e</label><div class="track-container"> <input class="range-slider" type="range" id="slider-e" name="slider-e" min="-350" max="350" value="0" step="1" disabled><div class="value-label"></div><div class="min-value"></div><div class="max-value"></div></div></div><div class="range-slider-container disabled"> <label for="slider-f" class="label">f</label><div class="track-container"> <input class="range-slider" type="range" id="slider-f" name="slider-f" min="-350" max="350" value="0" step="1" disabled><div class="value-label"></div><div class="min-value"></div><div class="max-value"></div></div></div>',
+    controls:     '<select id="presets" class="mb-2"><option value="x-axis">Shear along the <i>x</i>-axis</option><option value="y-axis">Shear along the <i>y</i>-axis</option><option value="both">Shear along both <i>x</i> and <i>y</i> axes</option> </select>',
+    sliders: [
+      //  Slider( min,   max,  value,  step,  type,        symbol,  unit   )
+      new Slider( -3,    3,    1,      0.1,   "disabled",  "a",     "none" ),
+      new Slider( -3,    3,    0,      0.1,   "disabled",  "b",     "none" ),
+      new Slider( -3,    3,    0,      0.1,   "active",    "c",     "none" ),
+      new Slider( -3,    3,    1,      0.1,   "disabled",  "d",     "none" ),
+      new Slider( -350,  350,  0,      1,     "disabled",  "e",     "none" ),
+      new Slider( -350,  350,  0,      1,     "disabled",  "f",     "none" )
+    ],
     initialValues: [1, 0, 0, 1, 0, 0],
     enabledSliders: ["c"]
   },
   {
     title:        'Rotate',
     definition:   'to turn a shape around a central fixed point',
-    controls:     '<div class="range-slider-container master"> <label for="slider-theta" class="label">θ</label><div class="track-container"> <input data-unit="degree" class="range-slider" type="range" id="slider-theta" name="slider-theta" min="0" max="360" value="0" step="1"><div class="value-label"></div><div class="min-value"></div><div class="max-value"></div></div></div><div class="range-slider-container active passive"> <label for="slider-a" class="label">a</label><div class="track-container"> <input class="range-slider" type="range" id="slider-a" name="slider-a" min="-1" max="1" value="1" step="0.01" disabled><div class="value-label"></div><div class="min-value"></div><div class="max-value"></div></div></div><div class="range-slider-container active passive"> <label for="slider-b" class="label">b</label><div class="track-container"> <input class="range-slider" type="range" id="slider-b" name="slider-b" min="-1" max="1" value="0" step="0.01" disabled><div class="value-label"></div><div class="min-value"></div><div class="max-value"></div></div></div><div class="range-slider-container active passive"> <label for="slider-c" class="label">c</label><div class="track-container"> <input class="range-slider" type="range" id="slider-c" name="slider-c" min="-1" max="1" value="0" step="0.01" disabled><div class="value-label"></div><div class="min-value"></div><div class="max-value"></div></div></div><div class="range-slider-container active passive"> <label for="slider-d" class="label">d</label><div class="track-container"> <input class="range-slider" type="range" id="slider-d" name="slider-d" min="-1" max="1" value="1" step="0.01" disabled><div class="value-label"></div><div class="min-value"></div><div class="max-value"></div></div></div><div class="range-slider-container disabled"> <label for="slider-e" class="label">e</label><div class="track-container"> <input class="range-slider" type="range" id="slider-e" name="slider-e" min="-350" max="350" value="0" step="1" disabled><div class="value-label"></div><div class="min-value"></div><div class="max-value"></div></div></div><div class="range-slider-container disabled"> <label for="slider-f" class="label">f</label><div class="track-container"> <input class="range-slider" type="range" id="slider-f" name="slider-f" min="-350" max="350" value="0" step="1" disabled><div class="value-label"></div><div class="min-value"></div><div class="max-value"></div></div></div>',
+    controls:     '',
+    sliders: [
+      //  Slider( min,   max,  value,  step,  type,        symbol,  unit     )
+      new Slider( 0,     360,  0,      1,     "master",    "θ",     "degree" ),
+      new Slider( -1,    1,    1,      0.01,  "passive",   "a",     "none"   ),
+      new Slider( -1,    1,    0,      0.01,  "passive",   "b",     "none"   ),
+      new Slider( -1,    1,    0,      0.01,  "passive",   "c",     "none"   ),
+      new Slider( -1,    1,    1,      0.01,  "passive",   "d",     "none"   ),
+      new Slider( -350,  350,  0,      1,     "disabled",  "e",     "none"   ),
+      new Slider( -350,  350,  0,      1,     "disabled",  "f",     "none"   )
+    ],
     initialValues: [1, 0, 0, 1, 0, 0]
   }
 ];
@@ -69,8 +106,10 @@ function loadLevel(index) {
   definition.innerText = levels[index].definition || "";
   instructions.innerHTML = levels[index].instructions || "";
   controls.innerHTML = levels[index].controls || "";
+  // Create the sliders
+  renderSliders(index);
   // Show "bottom-half" when necessary
-  if (levels[index].controls) {
+  if (levels[index].sliders) {
     bottomHalf.style.display = "flex";
   } else {
     bottomHalf.style.display = "none";
@@ -82,12 +121,17 @@ function loadLevel(index) {
   // Draw things on the canvas
   resetCanvas();
   drawOnCanvas(index);
-  // Initialize the sliders (if any)
-  if (document.querySelector('.range-slider-container') !== null) {
-    initializeAllSliders();
-  }
   // Initialize values in the matrix & equations
   loadInitialValues(index);
+}
+
+// Render the sliders
+function renderSliders(index) {
+  if (levels[index].sliders) {
+    levels[index].sliders.forEach((slider) => {
+      slider.render();
+    });
+  }
 }
 
 // Draw on the canvas based on levels
