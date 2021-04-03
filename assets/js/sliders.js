@@ -77,8 +77,8 @@ function Slider(min, max, defaultValue, step, type, symbol, unit) {
                                   <input class="range-slider" type="range" id="slider-${this.symbol}"
                                          min="${this.min}" max="${this.max}" value="${this.value}" step="${this.step}">
                                   <div class="value-label">${this.value}</div>
-                                  <div class="min-value">${this.min}</div>
-                                  <div class="max-value">${this.max}</div>
+                                  <div class="min-value">${this.min + this.getUnit()}</div>
+                                  <div class="max-value">${this.max + this.getUnit()}</div>
                                 </div>`;
     controls.appendChild(this.container);
 
@@ -186,6 +186,7 @@ function initializeSlider(sliderContainer) {
   // ---------------------------------------------------------
 
   // Display min & max values based on <input> attributes
+  // ==> [No need to rewrite]
   function setRangeLabels() {
     var decimals = getDecimalPlaces(step);
     minValue.innerText = Number(sliderInput.min).toFixed(decimals) + getUnit();
