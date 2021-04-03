@@ -102,6 +102,9 @@ function Slider(min, max, defaultValue, step, type, symbol, unit) {
       classes.add(type);
     }
 
+    // Update the track color
+    this.setTrackColor();
+
     // Enable / disable the <input>
     const input = this.container.querySelector('.range-slider');
     if (type === "disabled" || type === "passive") {
@@ -110,11 +113,8 @@ function Slider(min, max, defaultValue, step, type, symbol, unit) {
       input.removeAttribute("disabled");
     }
 
-    // Update the slider's attribute
+    // Update the slider's type attribute
     this.type = type;
-
-    // Update the track color
-    this.setTrackColor();
 
   };
 
@@ -138,6 +138,17 @@ function Slider(min, max, defaultValue, step, type, symbol, unit) {
     const input = this.container.querySelector('.range-slider');
     input.style.background = css;
   };
+
+  // Programmatically set the value of the slider
+  this.setValue = (value) => {
+    // Grab the <input>
+    const input = this.container.querySelector('.range-slider');
+    // Update the value
+    this.value = value;
+    input.value = value;
+    // Simulate an input
+    input.dispatchEvent(new Event('input'));
+  }
 
   // ------ 3. To handle inputs ------ //
   this.handleInput = () => {
@@ -268,6 +279,7 @@ function initializeAllSliders() {
 }
 
 // Programmatically set the value of a slider
+// ==> [Rewritten in OOP]
 // e.g. setSliderValue("a", "2") => move slider a to 2
 function setSliderValue(symbol, value) {
   // Select the slider
