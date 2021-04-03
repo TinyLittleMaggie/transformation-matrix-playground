@@ -12,6 +12,7 @@ function Slider(min, max, defaultValue, step, type, symbol, unit) {
 
   // ------------------------------ Attributes ------------------------------ //
 
+  // Set the inherent attributes
   this.min = min;
   this.max = max;
   this.value = defaultValue;
@@ -25,7 +26,7 @@ function Slider(min, max, defaultValue, step, type, symbol, unit) {
 
   // ------------------------------- Methods -------------------------------- //
 
-  // ------ 1. To calculate attributes ------ //
+  // ------ 1. To calculate additional attributes ------ //
 
   // Calculate where the slider "thumb" should be (in percentage number)
   this.getPercentage = () => {
@@ -70,6 +71,7 @@ function Slider(min, max, defaultValue, step, type, symbol, unit) {
   // Render a slider on the page
   this.render = () => {
 
+    // Insert the slider into the "controls" container
     const controls = document.querySelector('#page-content .controls');
     this.container.classList.add("range-slider-container");
     this.container.innerHTML = `<label class="label">${this.symbol}</label>
@@ -254,6 +256,7 @@ function initializeSlider(sliderContainer) {
 
   /* ---------------------------- Event listeners ---------------------------- */
 
+  // ==> [Rewritten in OOP]
   sliderInput.addEventListener('input', function() {
     setValueLabel();
     setTrackColors();
@@ -261,20 +264,10 @@ function initializeSlider(sliderContainer) {
 
   /* ---------------------------- Initialization ----------------------------- */
 
+  // ==> [Rewritten in OOP]
   setRangeLabels();
   setValueLabel();
   setTrackColors();
-
-}
-
-// Initialize all sliders on the page
-function initializeAllSliders() {
-
-  var allSliders = document.querySelectorAll('.range-slider-container');
-
-  allSliders.forEach(function(slider) {
-    initializeSlider(slider);
-  });
 
 }
 
@@ -288,4 +281,16 @@ function setSliderValue(symbol, value) {
   slider.value = value;
   // Simulate an input
   slider.dispatchEvent(new Event('input'));
+}
+
+// TODO: replace the below function; use OOP code to create sliders on the page
+// Initialize all sliders on the page
+function initializeAllSliders() {
+
+  var allSliders = document.querySelectorAll('.range-slider-container');
+
+  allSliders.forEach(function(slider) {
+    initializeSlider(slider);
+  });
+
 }
