@@ -25,7 +25,7 @@ function Slider(min, max, defaultValue, step, type, symbol, unit) {
 
   // ------------------------------- Methods -------------------------------- //
 
-  // --- 1. To calculate attributes --- //
+  // ------ 1. To calculate attributes ------ //
 
   // Calculate where the slider "thumb" should be (in percentage number)
   this.getPercentage = () => {
@@ -48,7 +48,7 @@ function Slider(min, max, defaultValue, step, type, symbol, unit) {
 
   // Determine the number of decimal places to display based on the "step" attr.
   this.getDecimalPlaces = () => {
-    var decimals = this.step.toString().split(".")[1];
+    const decimals = this.step.toString().split(".")[1];
     if (decimals === undefined) {
       return 0;
     } else {
@@ -65,7 +65,7 @@ function Slider(min, max, defaultValue, step, type, symbol, unit) {
     }
   };
 
-  // --- 2. To initialize / update a slider --- //
+  // ------ 2. To initialize / update a slider ------ //
 
   // Render a slider on the page
   this.render = () => {
@@ -77,13 +77,14 @@ function Slider(min, max, defaultValue, step, type, symbol, unit) {
                                   <input class="range-slider" type="range" id="slider-${this.symbol}"
                                          min="${this.min}" max="${this.max}" value="${this.value}" step="${this.step}">
                                   <div class="value-label">${this.value}</div>
-                                  <div class="min-value">${this.min + this.getUnit()}</div>
-                                  <div class="max-value">${this.max + this.getUnit()}</div>
+                                  <div class="min-value">${Number(this.min).toFixed(this.getDecimalPlaces()) + this.getUnit()}</div>
+                                  <div class="max-value">${Number(this.max).toFixed(this.getDecimalPlaces()) + this.getUnit()}</div>
                                 </div>`;
     controls.appendChild(this.container);
 
     // Initialize the slider
     this.setSliderType(this.type);
+    this.setValueLabel();
     this.handleInput();
 
   };
@@ -113,11 +114,24 @@ function Slider(min, max, defaultValue, step, type, symbol, unit) {
 
   };
 
-  // Add event listener to handle input
+  // Display the slider value right above the thumb
+  this.setValueLabel = () => {
+    // Get decimal places
+    const decimals = this.getDecimalPlaces();
+    // Grab the "value-label" element
+    const valueLabel = this.container.querySelector('.value-label');
+    // Display the value
+    valueLabel.innerText = Number(this.value).toFixed(decimals) + this.getUnit();
+    // Adjust the position
+    valueLabel.style.left = "calc(" + this.getPercentage() + "% - 17px)";
+  };
+
+  // ------ 3. To handle inputs ------ //
   this.handleInput = () => {
     const input = this.container.querySelector('.range-slider');
     input.addEventListener('input', () => {
       this.value = input.value;
+      this.setValueLabel();
     });
   };
 
