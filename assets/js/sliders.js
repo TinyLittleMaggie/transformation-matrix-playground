@@ -85,6 +85,7 @@ function Slider(min, max, defaultValue, step, type, symbol, unit) {
     // Initialize the slider
     this.setSliderType(this.type);
     this.setValueLabel();
+    this.setTrackColor();
     this.handleInput();
 
   };
@@ -112,6 +113,9 @@ function Slider(min, max, defaultValue, step, type, symbol, unit) {
     // Update the slider's attribute
     this.type = type;
 
+    // Update the track color
+    this.setTrackColor();
+
   };
 
   // Display the slider value right above the thumb
@@ -126,12 +130,22 @@ function Slider(min, max, defaultValue, step, type, symbol, unit) {
     valueLabel.style.left = "calc(" + this.getPercentage() + "% - 17px)";
   };
 
+  // Color the slider track to reflect current value
+  this.setTrackColor = () => {
+    const p = this.getPercentage();
+    const c = this.getThemeColor();
+    const css = "linear-gradient(90deg, rgba(" + c + ", 1) " + p + "%, rgba(" + c + ", 0.2) " + p + "%)";
+    const input = this.container.querySelector('.range-slider');
+    input.style.background = css;
+  };
+
   // ------ 3. To handle inputs ------ //
   this.handleInput = () => {
     const input = this.container.querySelector('.range-slider');
     input.addEventListener('input', () => {
       this.value = input.value;
       this.setValueLabel();
+      this.setTrackColor();
     });
   };
 
@@ -208,6 +222,7 @@ function initializeSlider(sliderContainer) {
   }
 
   // Display the slider value right above the thumb
+  // ==> [Rewritten in OOP]
   function setValueLabel() {
     // Get decimal places
     var decimals = getDecimalPlaces(step);
@@ -218,6 +233,7 @@ function initializeSlider(sliderContainer) {
   }
 
   // Color the slider track to reflect current value
+  // ==> [Rewritten in OOP]
   function setTrackColors() {
     var p = getPercentage();
     var c = getThemeColor();
