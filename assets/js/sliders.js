@@ -1,18 +1,71 @@
 // Slider constructor
-function Slider(min, max, step, type, defaultValue, symbol) {
+function Slider(min, max, defaultValue, step, type, symbol, unit) {
 
-  // ------------------ Attributes ------------------ //
+  /* Slider types explained:
+     .active          -  value can be changed by user input
+     .disabled        -  has a fixed value
+     .master          -  value can be changed by user input,
+                         and can affect the values of other sliders
+     .active.passive  -  value can be controlled by a master slider,
+                         but can't be changed by user input
+  */
+
+  // ------------------------------ Attributes ------------------------------ //
+
   this.min = min;
   this.max = max;
-  this.step = step;
-  this.type = type;
   this.value = defaultValue;
-  this.symbol = symbol;
+  this.step = step;           // 1 | 0.1 | 0.01
+  this.type = type;           // "master", "active", "disabled", "passive"
+  this.symbol = symbol;       // "a", "b", "c", "d", "e", "f", "θ"
+  this.unit = unit;           // "degree" || "none"
 
   // Create an empty container
   this.container = document.createElement("div");
 
-  // ------------------- Methods -------------------- //
+  // ------------------------------- Methods -------------------------------- //
+
+  // --- 1. To calculate attributes --- //
+
+  // Calculate where the slider "thumb" should be (in percentage number)
+  this.getPercentage = () => {
+    return (this.value - this.min) / (this.max - this.min) * 100;
+  };
+
+  // Choose the theme color based on slider type
+  this.getThemeColor = () => {
+    switch (this.type) {
+      case "master":
+        return "45, 45, 45";
+      case "active":
+        return "246, 84, 133";
+      case "passive":
+        return "246, 84, 133";
+      case "disabled":
+        return "160, 160, 160";
+    }
+  };
+
+  // Determine the number of decimal places to display based on the "step" attr.
+  this.getDecimalPlaces = () => {
+    var decimals = this.step.toString().split(".")[1];
+    if (decimals === undefined) {
+      return 0;
+    } else {
+      return decimals.length;
+    }
+  };
+
+  // Determine the unit to be displayed
+  this.getUnit = () => {
+    if (this.unit === "degree") {
+      return "°";
+    } else {
+      return "";
+    }
+  };
+
+  // --- 2. To initialize / update a slider --- //
 
   // Render a slider on the page
   this.render = () => {
@@ -35,19 +88,28 @@ function Slider(min, max, step, type, defaultValue, symbol) {
 
   };
 
-  // Apply styling and enable/disable the input based on slider type
+  // Set the slider type
   this.setSliderType = (type) => {
 
+    // Update classes in the container to apply styling
     const classes = this.container.classList;
-    classes.remove("master", "active", "disabled");
-    classes.add(type);
+    classes.remove("master", "active", "disabled", "passive");
+    if (type === "passive") {
+      classes.add("active", "passive");
+    } else {
+      classes.add(type);
+    }
 
+    // Enable / disable the <input>
     const input = this.container.querySelector('.range-slider');
-    if (type === "disabled") {
+    if (type === "disabled" || type === "passive") {
       input.setAttribute("disabled", "");
     } else {
       input.removeAttribute("disabled");
     }
+
+    // Update the slider's attribute
+    this.type = type;
 
   };
 
@@ -57,23 +119,6 @@ function Slider(min, max, step, type, defaultValue, symbol) {
     input.addEventListener('input', () => {
       this.value = input.value;
     });
-  };
-
-  // Calculate where the slider "thumb" should be (in percentage number)
-  this.getPercentage = () => {
-    return (this.value - this.min) / (this.max - this.min) * 100;
-  };
-
-  // Choose the theme color based on slider type
-  this.getThemeColor = () => {
-    switch (this.type) {
-      case "master":
-        return "45, 45, 45";
-      case "active":
-        return "246, 84, 133";
-      case "disabled":
-        return "160, 160, 160";
-    }
   };
 
 }
@@ -98,12 +143,14 @@ function initializeSlider(sliderContainer) {
   /* ------------------------------- Functions ------------------------------- */
 
   // Calculate the horizontal position of the thumb (in percentage number)
+  // ==> [Rewritten in OOP]
   function getPercentage() {
     var total = sliderInput.max - sliderInput.min;
     return ((sliderInput.value - sliderInput.min)/total) * 100;
   }
 
   // Choose the theme color based on slider type
+  // ==> [Rewritten in OOP]
   function getThemeColor() {
     var classes = sliderContainer.classList;
     if (classes.contains("master")) {
@@ -116,6 +163,7 @@ function initializeSlider(sliderContainer) {
   }
 
   // Determine the number of decimal places to display based on the "step" attr.
+  // ==> [Rewritten in OOP]
   function getDecimalPlaces(step) {
     var decimals = step.split(".")[1];
     if (decimals === undefined) {
@@ -126,6 +174,7 @@ function initializeSlider(sliderContainer) {
   }
 
   // If it is an input that has a unit, return the unit
+  // ==> [Rewritten in OOP]
   function getUnit() {
     if (sliderInput.dataset.unit === "degree") {
       return "°";
@@ -133,6 +182,8 @@ function initializeSlider(sliderContainer) {
       return "";
     }
   }
+
+  // ---------------------------------------------------------
 
   // Display min & max values based on <input> attributes
   function setRangeLabels() {
