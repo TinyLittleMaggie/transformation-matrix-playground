@@ -13,30 +13,30 @@ var levels = [
     title:        'Translate',
     definition:   'to move a shape from one place to another',
     controls:     '',
-    sliders: [
-      //  Slider( min,   max,  value,  step,  type,        symbol,  unit   )
-      new Slider( -3,    3,    1,      0.1,   "disabled",  "a",     "none" ),
-      new Slider( -3,    3,    0,      0.1,   "disabled",  "b",     "none" ),
-      new Slider( -3,    3,    0,      0.1,   "disabled",  "c",     "none" ),
-      new Slider( -3,    3,    1,      0.1,   "disabled",  "d",     "none" ),
-      new Slider( -350,  350,  0,      1,     "active",    "e",     "none" ),
-      new Slider( -350,  350,  0,      1,     "active",    "f",     "none" )
-    ],
+    sliders: {
+      //     Slider( min,   max,  value,  step,  type,        symbol,  unit   )
+      a: new Slider( -3,    3,    1,      0.1,   "disabled",  "a",     "none" ),
+      b: new Slider( -3,    3,    0,      0.1,   "disabled",  "b",     "none" ),
+      c: new Slider( -3,    3,    0,      0.1,   "disabled",  "c",     "none" ),
+      d: new Slider( -3,    3,    1,      0.1,   "disabled",  "d",     "none" ),
+      e: new Slider( -350,  350,  0,      1,     "active",    "e",     "none" ),
+      f: new Slider( -350,  350,  0,      1,     "active",    "f",     "none" )
+    },
     initialValues: [1, 0, 0, 1, 0, 0] // Matrix values [a, b, c, d, e, f]
   },
   {
     title:        'Scale',
     definition:   'to make a shape bigger or smaller',
     controls:     '<select id="presets" class="mb-2"><option value="">Choose a preset...</option><option value="origin">Reflect about origin</option><option value="x-axis">Reflect about <i>x</i>-axis</option><option value="y-axis">Reflect about <i>y</i>-axis</option></select>',
-    sliders: [
-      //  Slider( min,   max,  value,  step,  type,        symbol,  unit   )
-      new Slider( -3,    3,    1,      0.1,   "active",    "a",     "none" ),
-      new Slider( -3,    3,    0,      0.1,   "disabled",  "b",     "none" ),
-      new Slider( -3,    3,    0,      0.1,   "disabled",  "c",     "none" ),
-      new Slider( -3,    3,    1,      0.1,   "active",    "d",     "none" ),
-      new Slider( -350,  350,  0,      1,     "disabled",  "e",     "none" ),
-      new Slider( -350,  350,  0,      1,     "disabled",  "f",     "none" )
-    ],
+    sliders: {
+      //     Slider( min,   max,  value,  step,  type,        symbol,  unit   )
+      a: new Slider( -3,    3,    1,      0.1,   "active",    "a",     "none" ),
+      b: new Slider( -3,    3,    0,      0.1,   "disabled",  "b",     "none" ),
+      c: new Slider( -3,    3,    0,      0.1,   "disabled",  "c",     "none" ),
+      d: new Slider( -3,    3,    1,      0.1,   "active",    "d",     "none" ),
+      e: new Slider( -350,  350,  0,      1,     "disabled",  "e",     "none" ),
+      f: new Slider( -350,  350,  0,      1,     "disabled",  "f",     "none" )
+    },
     initialValues: [1, 0, 0, 1, 0, 0],
     enabledSliders: ["a", "d"]
   },
@@ -44,15 +44,15 @@ var levels = [
     title:        'Shear',
     definition:   'to distort a shape along the axes',
     controls:     '<select id="presets" class="mb-2"><option value="x-axis">Shear along the <i>x</i>-axis</option><option value="y-axis">Shear along the <i>y</i>-axis</option><option value="both">Shear along both <i>x</i> and <i>y</i> axes</option> </select>',
-    sliders: [
-      //  Slider( min,   max,  value,  step,  type,        symbol,  unit   )
-      new Slider( -3,    3,    1,      0.1,   "disabled",  "a",     "none" ),
-      new Slider( -3,    3,    0,      0.1,   "disabled",  "b",     "none" ),
-      new Slider( -3,    3,    0,      0.1,   "active",    "c",     "none" ),
-      new Slider( -3,    3,    1,      0.1,   "disabled",  "d",     "none" ),
-      new Slider( -350,  350,  0,      1,     "disabled",  "e",     "none" ),
-      new Slider( -350,  350,  0,      1,     "disabled",  "f",     "none" )
-    ],
+    sliders: {
+      //     Slider( min,   max,  value,  step,  type,        symbol,  unit   )
+      a: new Slider( -3,    3,    1,      0.1,   "disabled",  "a",     "none" ),
+      b: new Slider( -3,    3,    0,      0.1,   "disabled",  "b",     "none" ),
+      c: new Slider( -3,    3,    0,      0.1,   "active",    "c",     "none" ),
+      d: new Slider( -3,    3,    1,      0.1,   "disabled",  "d",     "none" ),
+      e: new Slider( -350,  350,  0,      1,     "disabled",  "e",     "none" ),
+      f: new Slider( -350,  350,  0,      1,     "disabled",  "f",     "none" )
+    },
     initialValues: [1, 0, 0, 1, 0, 0],
     enabledSliders: ["c"]
   },
@@ -60,16 +60,16 @@ var levels = [
     title:        'Rotate',
     definition:   'to turn a shape around a central fixed point',
     controls:     '',
-    sliders: [
-      //  Slider( min,   max,  value,  step,  type,        symbol,  unit     )
-      new Slider( 0,     360,  0,      1,     "master",    "θ",     "degree" ),
-      new Slider( -1,    1,    1,      0.01,  "passive",   "a",     "none"   ),
-      new Slider( -1,    1,    0,      0.01,  "passive",   "b",     "none"   ),
-      new Slider( -1,    1,    0,      0.01,  "passive",   "c",     "none"   ),
-      new Slider( -1,    1,    1,      0.01,  "passive",   "d",     "none"   ),
-      new Slider( -350,  350,  0,      1,     "disabled",  "e",     "none"   ),
-      new Slider( -350,  350,  0,      1,     "disabled",  "f",     "none"   )
-    ],
+    sliders: {
+      //      Slider( min,   max,  value,  step,  type,        symbol,  unit     )
+      th: new Slider( 0,     360,  0,      1,     "master",    "θ",     "degree" ),
+      a:  new Slider( -1,    1,    1,      0.01,  "passive",   "a",     "none"   ),
+      b:  new Slider( -1,    1,    0,      0.01,  "passive",   "b",     "none"   ),
+      c:  new Slider( -1,    1,    0,      0.01,  "passive",   "c",     "none"   ),
+      d:  new Slider( -1,    1,    1,      0.01,  "passive",   "d",     "none"   ),
+      e:  new Slider( -350,  350,  0,      1,     "disabled",  "e",     "none"   ),
+      f:  new Slider( -350,  350,  0,      1,     "disabled",  "f",     "none"   )
+    },
     initialValues: [1, 0, 0, 1, 0, 0]
   }
 ];
@@ -127,10 +127,11 @@ function loadLevel(index) {
 
 // Render the sliders
 function renderSliders(index) {
-  if (levels[index].sliders) {
-    levels[index].sliders.forEach((slider) => {
-      slider.render();
-    });
+  const sliders = levels[index].sliders;
+  if (sliders) {
+    for (let key in sliders) {
+      sliders[key].render();
+    }
   }
 }
 
