@@ -135,27 +135,6 @@ function renderSliders(index) {
   }
 }
 
-// Draw on the canvas based on levels
-function drawOnCanvas(index) {
-  switch (index) {
-    case 0:
-      introLevel();
-      break;
-    case 1:
-      translateLevel();
-      break;
-    case 2:
-      scaleLevel();
-      break;
-    case 3:
-      shearLevel();
-      break;
-    case 4:
-      rotateLevel();
-      break;
-  }
-}
-
 // Set active icon as pink and the rest as grey
 function updateIcons(index) {
   // Remove "active" from all nav buttons
@@ -189,6 +168,223 @@ function loadInitialValues(index) {
     equationE.innerText = e;
     equationF.innerText = f;
   }
+}
+
+// Draw on the canvas based on levels
+function drawOnCanvas(index) {
+  switch (index) {
+    case 0:
+      introLevel();
+      break;
+    case 1:
+      translateLevel();
+      break;
+    case 2:
+      scaleLevel();
+      break;
+    case 3:
+      shearLevel();
+      break;
+    case 4:
+      rotateLevel();
+      break;
+  }
+}
+
+/* -------------------- Drawing functions for each level -------------------- */
+
+/* Below are functions that describe how things should be drawn on the canvas
+   and how the numbers in the matrix & in the equations should change
+   based on the inputs from the left panel */
+
+function introLevel() {
+  circle(40, 70, 5);
+  circle(160, 180, 5);
+  dashedLine(40, 70, 160, 180, 2, 4);
+  textString(50, 50, "(x, y)");
+  textString(170, 160, "(x’, y’)");
+}
+
+function translateLevel() {
+
+  // Select the slider objects
+  var e = levels[1].sliders.e;
+  var f = levels[1].sliders.f;
+
+  // Set which numbers are highlighted in the matrix & equations
+  setHighlights(["e", "f"]);
+
+  // Define the "translate" function and execute it once
+  function translate() {
+    // Clear the canvas & draw the original image
+    resetCanvas();
+    drawOriginalImg();
+    // Draw the transformed image
+    drawTransformedImg(1, 0, 0, 1, e.value, f.value);
+  }
+  translate();
+
+  // Update the drawings whenever the e & f inputs change
+  e.container.querySelector('input').addEventListener('input', function() {
+    translate();
+    updateMatrixValues("e", "");
+  });
+  f.container.querySelector('input').addEventListener('input', function() {
+    translate();
+    updateMatrixValues("f", "");
+  });
+
+}
+
+function scaleLevel() {
+
+  // Select the slider objects
+  var a = levels[2].sliders.a;
+  var d = levels[2].sliders.d;
+  // Select the presets dropdown
+  var presets = document.getElementById('presets');
+
+  // Set which numbers are highlighted in the matrix & equations
+  setHighlights(["a", "d"]);
+
+  // Define the "scale" function and execute it once
+  function scale() {
+    // Clear the canvas & draw the original image
+    resetCanvas();
+    drawOriginalImg();
+    // Draw the transformed image
+    drawTransformedImg(a.value, 0, 0, d.value, 0, 0);
+  }
+  scale();
+
+  // Update the drawings whenever the a & d inputs change
+  a.container.querySelector('input').addEventListener('input', function() {
+    scale();
+    updateMatrixValues("a", "x");
+  });
+  d.container.querySelector('input').addEventListener('input', function() {
+    scale();
+    updateMatrixValues("d", "y");
+  });
+
+  // Automatically adjust the a & d inputs when a preset is selected
+  presets.addEventListener('input', function() {
+    var preset = presets.value;
+    if (preset === "origin") {
+      a.setValue(-1);
+      d.setValue(-1);
+    } else if (preset === "x-axis") {
+      a.setValue(1);
+      d.setValue(-1);
+    } else if (preset === "y-axis") {
+      a.setValue(-1);
+      d.setValue(1);
+    }
+  });
+
+  // Remove preset selection when the a & d inputs are clicked
+  a.container.querySelector('input').addEventListener('mousedown', function() {
+    presets.value = "";
+  });
+  d.container.querySelector('input').addEventListener('mousedown', function() {
+    presets.value = "";
+  });
+
+}
+
+function shearLevel() {
+
+  // Select the slider objects
+  var b = levels[3].sliders.b;
+  var c = levels[3].sliders.c;
+  // Select the presets dropdown
+  var presets = document.getElementById('presets');
+
+  // Set which numbers are highlighted in the matrix & equations
+  setHighlights(["c"]);
+
+  // Define the "shear" function and execute it once
+  function shear() {
+    // Clear the canvas & draw the original image
+    resetCanvas();
+    drawOriginalImg();
+    // Draw the transformed image
+    drawTransformedImg(1, b.value, c.value, 1, 0, 0);
+  }
+  shear();
+
+  // Update the drawings whenever the b & c inputs change
+  b.container.querySelector('input').addEventListener('input', function() {
+    shear();
+    updateMatrixValues("b", "x");
+  });
+  c.container.querySelector('input').addEventListener('input', function() {
+    shear();
+    updateMatrixValues("c", "y");
+  });
+
+  // Enable / disable the inputs when a preset is selected
+  presets.addEventListener('input', function() {
+    // Set b & c to 0, regardless of selection
+    b.setValue(0);
+    c.setValue(0);
+    var preset = presets.value;
+    if (preset === "both") {
+      b.setSliderType("active");
+      c.setSliderType("active");
+      setHighlights(["b", "c"]);
+    } else if (preset === "x-axis") {
+      b.setSliderType("disabled");
+      c.setSliderType("active");
+      setHighlights(["c"]);
+    } else if (preset === "y-axis") {
+      b.setSliderType("active");
+      c.setSliderType("disabled");
+      setHighlights(["b"]);
+    }
+  });
+
+}
+
+function rotateLevel() {
+
+  // Select the slider objects
+  var a = levels[4].sliders.a;
+  var b = levels[4].sliders.b;
+  var c = levels[4].sliders.c;
+  var d = levels[4].sliders.d;
+
+  // Select the master slider
+  var master = document.getElementById('slider-θ');
+
+  // Set which numbers are highlighted in the matrix & equations
+  setHighlights(["a", "b", "c", "d"]);
+
+  // Define the "rotate" function and execute it once
+  function rotate() {
+    // Clear the canvas & draw the original image
+    resetCanvas();
+    drawOriginalImg();
+    // Set values of a, b, c, d sliders based on master slider
+    var angle = toRadians(Number(master.value));
+    a.setValue(Math.cos(angle));
+    b.setValue(-Math.sin(angle));
+    c.setValue(Math.sin(angle));
+    d.setValue(Math.cos(angle));
+    // Draw the transformed image
+    drawTransformedImg(a.value, b.value, c.value, d.value, 0, 0);
+  }
+  rotate();
+
+  // Update the drawings whenever the master slider changes
+  master.addEventListener('input', function() {
+    rotate();
+    updateMatrixValues("a", "x");
+    updateMatrixValues("b", "x");
+    updateMatrixValues("c", "y");
+    updateMatrixValues("d", "y");
+  });
+
 }
 
 /* ---------------------------- Event listeners ---------------------------- */
