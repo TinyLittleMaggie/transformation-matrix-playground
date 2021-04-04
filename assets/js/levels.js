@@ -366,6 +366,11 @@ function rotateLevel() {
     // Clear the canvas & draw the original image
     resetCanvas();
     drawOriginalImg();
+    // Add some notes about how a, b, c, d are calculated
+    textString(160, 220, "a = cosθ");
+    textString(160, 200, "b = -sinθ");
+    textString(160, 180, "c = sinθ");
+    textString(160, 160, "d = cosθ");
     // Set values of a, b, c, d sliders based on master slider
     var angle = toRadians(Number(master.value));
     a.setValue(Math.cos(angle));
