@@ -20,8 +20,7 @@ var levels = [
       d: new Slider( -3,    3,    1,      0.1,   "disabled",  "d",     "none" ),
       e: new Slider( -350,  350,  0,      1,     "active",    "e",     "none" ),
       f: new Slider( -350,  350,  0,      1,     "active",    "f",     "none" )
-    },
-    initialValues: [1, 0, 0, 1, 0, 0] // Matrix values [a, b, c, d, e, f]
+    }
   },
   {
     title:        'Scale',
@@ -36,7 +35,6 @@ var levels = [
       e: new Slider( -350,  350,  0,      1,     "disabled",  "e",     "none" ),
       f: new Slider( -350,  350,  0,      1,     "disabled",  "f",     "none" )
     },
-    initialValues: [1, 0, 0, 1, 0, 0],
     enabledSliders: ["a", "d"]
   },
   {
@@ -52,7 +50,6 @@ var levels = [
       e: new Slider( -350,  350,  0,      1,     "disabled",  "e",     "none" ),
       f: new Slider( -350,  350,  0,      1,     "disabled",  "f",     "none" )
     },
-    initialValues: [1, 0, 0, 1, 0, 0],
     enabledSliders: ["c"]
   },
   {
@@ -67,8 +64,7 @@ var levels = [
       d:  new Slider( -1,    1,    1,      0.01,  "passive",   "d",     "none"   ),
       e:  new Slider( -350,  350,  0,      1,     "disabled",  "e",     "none"   ),
       f:  new Slider( -350,  350,  0,      1,     "disabled",  "f",     "none"   )
-    },
-    initialValues: [1, 0, 0, 1, 0, 0]
+    }
   }
 ];
 
@@ -147,7 +143,7 @@ function updateIcons(index) {
 // Initialize values in the matrix & equation
 function loadInitialValues(index) {
   // Update values
-  if (levels[index].initialValues) {
+  if (levels[index].sliders) {
     const a = levels[index].sliders.a;
     const b = levels[index].sliders.b;
     const c = levels[index].sliders.c;
