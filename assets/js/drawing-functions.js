@@ -59,10 +59,10 @@ function toRadians (angle) {
 /* ======= Function for updating the values in the matrix & equations ======= */
 
 // Update matrix values in real-time
-function updateMatrixValues(symbol, variable) {
+function updateMatrixValues(symbol, decimals) {
 
   // Get the current value of an input
-  var newValue = Number(document.getElementById('slider-' + symbol).value).toFixed(2);
+  var newValue = Number(document.getElementById('slider-' + symbol).value).toFixed(decimals);
   // TODO: instead of toFixed(2), use toFixed(slider.decimals) after OOP refactoring..
 
   // Update the values in the matrix & the quations

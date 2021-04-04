@@ -149,24 +149,24 @@ function updateIcons(index) {
 function loadInitialValues(index) {
   // Update values
   if (levels[index].initialValues) {
-    var a = levels[index].initialValues[0];
-    var b = levels[index].initialValues[1];
-    var c = levels[index].initialValues[2];
-    var d = levels[index].initialValues[3];
-    var e = levels[index].initialValues[4];
-    var f = levels[index].initialValues[5];
-    matrixA.innerText = a;
-    matrixB.innerText = b;
-    matrixC.innerText = c;
-    matrixD.innerText = d;
-    matrixE.innerText = e;
-    matrixF.innerText = f;
-    equationA.innerText = a;
-    equationB.innerText = b;
-    equationC.innerText = c;
-    equationD.innerText = d;
-    equationE.innerText = e;
-    equationF.innerText = f;
+    const a = levels[index].sliders.a;
+    const b = levels[index].sliders.b;
+    const c = levels[index].sliders.c;
+    const d = levels[index].sliders.d;
+    const e = levels[index].sliders.e;
+    const f = levels[index].sliders.f;
+    matrixA.innerText = Number(a.value).toFixed(a.getDecimalPlaces());
+    matrixB.innerText = Number(b.value).toFixed(b.getDecimalPlaces());
+    matrixC.innerText = Number(c.value).toFixed(c.getDecimalPlaces());
+    matrixD.innerText = Number(d.value).toFixed(d.getDecimalPlaces());
+    matrixE.innerText = Number(e.value).toFixed(e.getDecimalPlaces());
+    matrixF.innerText = Number(f.value).toFixed(f.getDecimalPlaces());
+    equationA.innerText = Number(a.value).toFixed(a.getDecimalPlaces());
+    equationB.innerText = Number(b.value).toFixed(b.getDecimalPlaces());
+    equationC.innerText = Number(c.value).toFixed(c.getDecimalPlaces());
+    equationD.innerText = Number(d.value).toFixed(d.getDecimalPlaces());
+    equationE.innerText = Number(e.value).toFixed(e.getDecimalPlaces());
+    equationF.innerText = Number(f.value).toFixed(f.getDecimalPlaces());
   }
 }
 
@@ -227,11 +227,11 @@ function translateLevel() {
   // Update the drawings whenever the e & f inputs change
   e.container.querySelector('input').addEventListener('input', function() {
     translate();
-    updateMatrixValues("e", "");
+    updateMatrixValues("e", e.getDecimalPlaces());
   });
   f.container.querySelector('input').addEventListener('input', function() {
     translate();
-    updateMatrixValues("f", "");
+    updateMatrixValues("f", f.getDecimalPlaces());
   });
 
 }
@@ -260,11 +260,11 @@ function scaleLevel() {
   // Update the drawings whenever the a & d inputs change
   a.container.querySelector('input').addEventListener('input', function() {
     scale();
-    updateMatrixValues("a", "x");
+    updateMatrixValues("a", a.getDecimalPlaces());
   });
   d.container.querySelector('input').addEventListener('input', function() {
     scale();
-    updateMatrixValues("d", "y");
+    updateMatrixValues("d", d.getDecimalPlaces());
   });
 
   // Automatically adjust the a & d inputs when a preset is selected
@@ -316,11 +316,11 @@ function shearLevel() {
   // Update the drawings whenever the b & c inputs change
   b.container.querySelector('input').addEventListener('input', function() {
     shear();
-    updateMatrixValues("b", "x");
+    updateMatrixValues("b", b.getDecimalPlaces());
   });
   c.container.querySelector('input').addEventListener('input', function() {
     shear();
-    updateMatrixValues("c", "y");
+    updateMatrixValues("c", c.getDecimalPlaces());
   });
 
   // Enable / disable the inputs when a preset is selected
@@ -379,10 +379,10 @@ function rotateLevel() {
   // Update the drawings whenever the master slider changes
   master.addEventListener('input', function() {
     rotate();
-    updateMatrixValues("a", "x");
-    updateMatrixValues("b", "x");
-    updateMatrixValues("c", "y");
-    updateMatrixValues("d", "y");
+    updateMatrixValues("a", a.getDecimalPlaces());
+    updateMatrixValues("b", b.getDecimalPlaces());
+    updateMatrixValues("c", c.getDecimalPlaces());
+    updateMatrixValues("d", d.getDecimalPlaces());
   });
 
 }
