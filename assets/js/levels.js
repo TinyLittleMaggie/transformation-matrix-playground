@@ -303,6 +303,12 @@ function shearLevel() {
   // Set which numbers are highlighted in the matrix & equations
   setHighlights(["c"]);
 
+  // Set the default values & types of sliders b & c
+  b.setSliderType("disabled");
+  c.setSliderType("active");
+  b.setValue(0);
+  c.setValue(0);
+
   // Define the "shear" function and execute it once
   function shear() {
     // Clear the canvas & draw the original image
