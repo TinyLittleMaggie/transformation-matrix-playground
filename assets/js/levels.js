@@ -12,7 +12,6 @@ var levels = [
   {
     title:        'Translate',
     definition:   'to move a shape from one place to another',
-    controls:     '',
     sliders: {
       //     Slider( min,   max,  value,  step,  type,        symbol,  unit   )
       a: new Slider( -3,    3,    1,      0.1,   "disabled",  "a",     "none" ),
@@ -27,7 +26,7 @@ var levels = [
   {
     title:        'Scale',
     definition:   'to make a shape bigger or smaller',
-    controls:     '<select id="presets" class="mb-2"><option value="">Choose a preset...</option><option value="origin">Reflect about origin</option><option value="x-axis">Reflect about <i>x</i>-axis</option><option value="y-axis">Reflect about <i>y</i>-axis</option></select>',
+    dropdown:     '<select id="presets" class="mb-2"><option value="">Choose a preset...</option><option value="origin">Reflect about origin</option><option value="x-axis">Reflect about <i>x</i>-axis</option><option value="y-axis">Reflect about <i>y</i>-axis</option></select>',
     sliders: {
       //     Slider( min,   max,  value,  step,  type,        symbol,  unit   )
       a: new Slider( -3,    3,    1,      0.1,   "active",    "a",     "none" ),
@@ -43,7 +42,7 @@ var levels = [
   {
     title:        'Shear',
     definition:   'to distort a shape along the axes',
-    controls:     '<select id="presets" class="mb-2"><option value="x-axis">Shear along the <i>x</i>-axis</option><option value="y-axis">Shear along the <i>y</i>-axis</option><option value="both">Shear along both <i>x</i> and <i>y</i> axes</option> </select>',
+    dropdown:     '<select id="presets" class="mb-2"><option value="x-axis">Shear along the <i>x</i>-axis</option><option value="y-axis">Shear along the <i>y</i>-axis</option><option value="both">Shear along both <i>x</i> and <i>y</i> axes</option> </select>',
     sliders: {
       //     Slider( min,   max,  value,  step,  type,        symbol,  unit   )
       a: new Slider( -3,    3,    1,      0.1,   "disabled",  "a",     "none" ),
@@ -59,7 +58,6 @@ var levels = [
   {
     title:        'Rotate',
     definition:   'to turn a shape around a central fixed point',
-    controls:     '',
     sliders: {
       //      Slider( min,   max,  value,  step,  type,        symbol,  unit     )
       th: new Slider( 0,     360,  0,      1,     "master",    "θ",     "degree" ),
@@ -105,7 +103,8 @@ function loadLevel(index) {
   title.innerText = levels[index].title;
   definition.innerText = levels[index].definition || "";
   instructions.innerHTML = levels[index].instructions || "";
-  controls.innerHTML = levels[index].controls || "";
+  // Insert the dropdown (if any)
+  controls.innerHTML = levels[index].dropdown || "";
   // Create the sliders
   renderSliders(index);
   // Show "bottom-half" when necessary
